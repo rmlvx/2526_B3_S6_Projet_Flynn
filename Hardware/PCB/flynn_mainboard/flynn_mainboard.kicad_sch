@@ -1,0 +1,98 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "56ec65ab-c401-455a-8a7c-6731af93b01f")
+	(paper "A4")
+	(lib_symbols)
+	(sheet
+		(at 129.54 96.52)
+		(size 44.45 29.21)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "62427f22-d6cc-475c-bb62-0af0fcc02fef")
+		(property "Sheetname" "LSM6DSOX"
+			(at 129.54 95.8084 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "lms6dsox.kicad_sch"
+			(at 129.54 126.3146 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "flynn_mainboard"
+				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 129.54 63.5)
+		(size 38.1 24.13)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "edcc4b41-8671-484f-b32b-a33f19c6dfd5")
+		(property "Sheetname" "tmc2225_driver"
+			(at 129.54 62.7884 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "tmc2225_driverkicad_sch.kicad_sch"
+			(at 129.54 88.2146 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "flynn_mainboard"
+				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
+)
