@@ -1,1 +1,1 @@
-# 2526_B3_S6_Projet_Bot
+# 2526_B3_S6_Projet_Flynn
