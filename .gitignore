@@ -1,6 +1,7 @@
 # .gitignore
 
 # Folders 
+Driver-LSM6DSOX/*.png
 Driver-LSM6DSOX/
 
 # Others Files

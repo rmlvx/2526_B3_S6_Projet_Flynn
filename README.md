@@ -9,7 +9,7 @@ L'objectif est de concevoir est de mettre en place un robot capable de suivre de
 - Rasperry PI ZERO 2W
 - Accéléromètre STM LSM6SDSOX
 - Capteur TMC2225
-- 
+- Capteur Infrarouge
 
 :copyright: Raphaël MILVAUX, Emire GUIOSE, Merihene REKIK, Zoléni KOKOLO ZASSI
 
