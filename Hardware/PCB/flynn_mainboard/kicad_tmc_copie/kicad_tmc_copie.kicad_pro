@@ -247,12 +247,10 @@
   },
   "libraries": {
     "pinned_footprint_libs": [],
-    "pinned_symbol_libs": [
-      "my_lib"
-    ]
+    "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "flynn_mainboard.kicad_pro",
+    "filename": "kicad_tmc_copie.kicad_pro",
     "version": 3
   },
   "net_settings": {
@@ -412,20 +410,8 @@
   },
   "sheets": [
     [
-      "56ec65ab-c401-455a-8a7c-6731af93b01f",
+      "7e50ed0b-a586-4402-9612-bc8fcc83516a",
       "Root"
-    ],
-    [
-      "edcc4b41-8671-484f-b32b-a33f19c6dfd5",
-      "tmc2225_driver"
-    ],
-    [
-      "62427f22-d6cc-475c-bb62-0af0fcc02fef",
-      "LSM6DSOX"
-    ],
-    [
-      "48644f95-9663-4113-8210-2b73e0ba91e3",
-      "TMC2225_COPIE"
     ]
   ],
   "text_variables": {}
