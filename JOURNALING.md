@@ -22,6 +22,8 @@ Ce fichier retrace les jours du projet
 - Avancement des schémas des composants sur KICAD
 - Finition de la documentation & augmentation du remplissage du journaling
 
+***
+
 ## Jour 3 : 2026-01-23
 
 M. Fiack observe nos schémas KICAD pour donner des observations.
@@ -30,8 +32,8 @@ M. Fiack observe nos schémas KICAD pour donner des observations.
 - Si on se trompe, on peut modifier les valeurs de ces labels et cela se modifie directement avec le schéma.
 - Tracer des lignes de séparation au lieu d'avoir des rectangles.
 - Faire un schéma en 2D pour savoir comprendre ce que l'on peut mettre.
-- Risque de court-circuit si on lie le +3.3 V du mosfet avec le +3.3 V de la Raspberry PI...
-- La Rapsberry a besoin d'une tension de +5V.
+- Risque de court-circuit si on lie le ``+3.3V`` du mosfet avec le +``3.3V`` de la Raspberry PI...
+- La Rapsberry a besoin d'une tension de ``+5V``.
 - Power_Supply (Faire une page en + )
 - Brancher les LED pour vérifier que le courant passe bien.
 - On met une résistance pour limiter le courant pour éviter de faire cramer la LED.
