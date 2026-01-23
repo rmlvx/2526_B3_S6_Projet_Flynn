@@ -247,7 +247,9 @@
   },
   "libraries": {
     "pinned_footprint_libs": [],
-    "pinned_symbol_libs": []
+    "pinned_symbol_libs": [
+      "my_lib"
+    ]
   },
   "meta": {
     "filename": "flynn_mainboard.kicad_pro",
@@ -420,6 +422,10 @@
     [
       "62427f22-d6cc-475c-bb62-0af0fcc02fef",
       "LSM6DSOX"
+    ],
+    [
+      "48644f95-9663-4113-8210-2b73e0ba91e3",
+      "TMC2225_COPIE"
     ]
   ],
   "text_variables": {}
