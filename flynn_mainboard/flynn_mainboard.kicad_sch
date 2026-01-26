@@ -2605,131 +2605,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "power:+5V"
-			(power)
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "#PWR"
-				(at 0 -3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Value" "+5V"
-				(at 0 3.556 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Power symbol creates a global label with name \"+5V\""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "global power"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "+5V_0_1"
-				(polyline
-					(pts
-						(xy -0.762 1.27) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "+5V_1_1"
-				(pin power_in line
-					(at 0 0 90)
-					(length 0)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "power:GND"
 			(power)
 			(pin_numbers
@@ -3182,6 +3057,12 @@
 		(uuid "3491bd3b-5760-41a4-bd6c-1a9de27470cf")
 	)
 	(junction
+		(at 49.53 143.51)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "3baa9399-3b6e-4c59-91a0-300c3b189ebc")
+	)
+	(junction
 		(at 27.94 104.14)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3204,12 +3085,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "9ac53837-7c99-4ec4-a4f3-fd2b4ffaf915")
-	)
-	(junction
-		(at 57.15 30.48)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "be456e94-93f5-4d9c-8128-b6f9117c5be7")
 	)
 	(junction
 		(at 49.53 146.05)
@@ -3244,6 +3119,10 @@
 		(uuid "0f4eb0d9-e8f3-4c87-8c22-c34820561b9f")
 	)
 	(no_connect
+		(at 55.88 30.48)
+		(uuid "111245b3-9140-4f87-8a6e-6db689d4454c")
+	)
+	(no_connect
 		(at 43.18 38.1)
 		(uuid "2a18edd2-dbe7-4289-91da-caa944aa1911")
 	)
@@ -3274,6 +3153,10 @@
 	(no_connect
 		(at 55.88 78.74)
 		(uuid "8d54b97c-1184-4c28-bd98-b2fb58838295")
+	)
+	(no_connect
+		(at 55.88 33.02)
+		(uuid "8fd83b8a-e410-4204-a165-d62575914d2f")
 	)
 	(no_connect
 		(at 43.18 73.66)
@@ -3419,16 +3302,6 @@
 	)
 	(wire
 		(pts
-			(xy 57.15 30.48) (xy 60.96 30.48)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5101e36b-c7d6-44b4-bfb0-106d325fc890")
-	)
-	(wire
-		(pts
 			(xy 33.02 153.67) (xy 38.1 153.67)
 		)
 		(stroke
@@ -3456,6 +3329,16 @@
 			(type default)
 		)
 		(uuid "601b215c-e6e1-4584-aa09-bafbe5badbb3")
+	)
+	(wire
+		(pts
+			(xy 49.53 143.51) (xy 49.53 146.05)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "626e3881-7d64-43d2-849f-9332bafb891b")
 	)
 	(wire
 		(pts
@@ -3599,7 +3482,7 @@
 	)
 	(wire
 		(pts
-			(xy 49.53 142.24) (xy 49.53 146.05)
+			(xy 49.53 142.24) (xy 49.53 143.51)
 		)
 		(stroke
 			(width 0)
@@ -3679,16 +3562,6 @@
 	)
 	(wire
 		(pts
-			(xy 55.88 30.48) (xy 57.15 30.48)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d98f9ab5-976d-4064-a309-b307e5a26c07")
-	)
-	(wire
-		(pts
 			(xy 49.53 154.94) (xy 49.53 153.67)
 		)
 		(stroke
@@ -3716,16 +3589,6 @@
 			(type default)
 		)
 		(uuid "ea07b94f-38ee-41de-b2a0-41ce3bceb38c")
-	)
-	(wire
-		(pts
-			(xy 55.88 33.02) (xy 60.96 33.02)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "eb4239fb-afc0-430b-a89e-605f4a7ea321")
 	)
 	(wire
 		(pts
@@ -4193,7 +4056,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0cba3564-1c73-4907-8299-3574ead4e3f6")
-		(property "Reference" "#PWR046"
+		(property "Reference" "#PWR0106"
 			(at 31.75 60.96 0)
 			(effects
 				(font
@@ -4245,7 +4108,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "#PWR046")
+					(reference "#PWR0106")
 					(unit 1)
 				)
 			)
@@ -4261,7 +4124,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "10a438f2-eb7b-4786-b6d4-134bc7d808d5")
-		(property "Reference" "#PWR054"
+		(property "Reference" "#PWR0114"
 			(at 67.31 66.04 0)
 			(effects
 				(font
@@ -4313,7 +4176,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "#PWR054")
+					(reference "#PWR0114")
 					(unit 1)
 				)
 			)
@@ -4330,7 +4193,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "190b6680-309b-4f9e-ac81-d4bed0f6a3cd")
-		(property "Reference" "#PWR018"
+		(property "Reference" "#PWR0109"
 			(at 49.53 146.05 0)
 			(effects
 				(font
@@ -4380,7 +4243,7 @@
 		(instances
 			(project ""
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "#PWR018")
+					(reference "#PWR0109")
 					(unit 1)
 				)
 			)
@@ -4396,7 +4259,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1949bc8a-c6f6-4180-940a-1fad6b1983af")
-		(property "Reference" "#PWR024"
+		(property "Reference" "#PWR0118"
 			(at 101.6 154.94 0)
 			(effects
 				(font
@@ -4446,7 +4309,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "#PWR024")
+					(reference "#PWR0118")
 					(unit 1)
 				)
 			)
@@ -4462,7 +4325,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "205d7c06-9692-4d0a-89a1-0b187be16bc1")
-		(property "Reference" "#PWR053"
+		(property "Reference" "#PWR0113"
 			(at 67.31 53.34 0)
 			(effects
 				(font
@@ -4514,7 +4377,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "#PWR053")
+					(reference "#PWR0113")
 					(unit 1)
 				)
 			)
@@ -4530,7 +4393,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "24742ea7-4ba3-4553-ac99-348e85d68864")
-		(property "Reference" "D5"
+		(property "Reference" "D102"
 			(at 105.41 171.7674 90)
 			(effects
 				(font
@@ -4584,75 +4447,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "D5")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 60.96 33.02 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "2a9f0f10-3fdd-4d4a-ab1c-bdec7676135a")
-		(property "Reference" "#PWR050"
-			(at 57.15 33.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 64.77 33.0199 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-					(color 255 0 23 1)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 60.96 33.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 60.96 33.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 60.96 33.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "fe79ab51-81ab-46a9-b534-f1a9e3581db9")
-		)
-		(instances
-			(project "flynn_mainboard"
-				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "#PWR050")
+					(reference "D102")
 					(unit 1)
 				)
 			)
@@ -4668,7 +4463,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2d944a76-d672-4cdd-a062-f09f6193e13a")
-		(property "Reference" "#PWR010"
+		(property "Reference" "#PWR0102"
 			(at 19.05 104.14 0)
 			(effects
 				(font
@@ -4719,7 +4514,7 @@
 		(instances
 			(project ""
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "#PWR010")
+					(reference "#PWR0102")
 					(unit 1)
 				)
 			)
@@ -4735,7 +4530,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3124bcb3-3074-4264-b9e3-ab3b37796082")
-		(property "Reference" "C8"
+		(property "Reference" "C101"
 			(at 30.48 110.4962 0)
 			(effects
 				(font
@@ -4789,7 +4584,7 @@
 		(instances
 			(project ""
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "C8")
+					(reference "C101")
 					(unit 1)
 				)
 			)
@@ -4805,7 +4600,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "336c39ec-f5fc-4117-b3d3-a95df3554d10")
-		(property "Reference" "#PWR052"
+		(property "Reference" "#PWR0112"
 			(at 67.31 45.72 0)
 			(effects
 				(font
@@ -4857,7 +4652,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "#PWR052")
+					(reference "#PWR0112")
 					(unit 1)
 				)
 			)
@@ -4873,7 +4668,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "36923a9e-05dc-416e-9a46-c0792b8feb67")
-		(property "Reference" "#PWR047"
+		(property "Reference" "#PWR0107"
 			(at 31.75 78.74 0)
 			(effects
 				(font
@@ -4925,7 +4720,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "#PWR047")
+					(reference "#PWR0107")
 					(unit 1)
 				)
 			)
@@ -4941,7 +4736,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4e24666d-cbe6-431f-800f-17930ed95fa8")
-		(property "Reference" "R6"
+		(property "Reference" "R101"
 			(at 92.71 160.0199 0)
 			(effects
 				(font
@@ -4995,7 +4790,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "R6")
+					(reference "R101")
 					(unit 1)
 				)
 			)
@@ -5011,7 +4806,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "53193841-dfb7-4020-9b4a-2dabd414333b")
-		(property "Reference" "#PWR012"
+		(property "Reference" "#PWR0103"
 			(at 29.21 116.84 0)
 			(effects
 				(font
@@ -5062,7 +4857,7 @@
 		(instances
 			(project ""
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "#PWR012")
+					(reference "#PWR0103")
 					(unit 1)
 				)
 			)
@@ -5078,7 +4873,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "54f15bdf-b711-487c-860a-5eafafbdac4c")
-		(property "Reference" "#FLG06"
+		(property "Reference" "#FLG0101"
 			(at 40.64 80.645 0)
 			(effects
 				(font
@@ -5128,7 +4923,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "#FLG06")
+					(reference "#FLG0101")
 					(unit 1)
 				)
 			)
@@ -5144,7 +4939,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "56a2bce6-5021-4e9b-9aa9-c4aaf331e742")
-		(property "Reference" "#PWR022"
+		(property "Reference" "#PWR0117"
 			(at 90.17 186.69 0)
 			(effects
 				(font
@@ -5194,73 +4989,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "#PWR022")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:PWR_FLAG")
-		(at 57.15 30.48 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "67a1bdd3-5a89-4472-b327-8448a90b6159")
-		(property "Reference" "#FLG07"
-			(at 57.15 28.575 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "PWR_FLAG"
-			(at 57.15 25.4 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 57.15 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 57.15 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 57.15 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "e3410d5d-a041-4b18-8bf8-873b81cc0d17")
-		)
-		(instances
-			(project "flynn_mainboard"
-				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "#FLG07")
+					(reference "#PWR0117")
 					(unit 1)
 				)
 			)
@@ -5276,7 +5005,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "725da291-a1cb-43ea-af8d-6734bca491cc")
-		(property "Reference" "R8"
+		(property "Reference" "R102"
 			(at 104.14 158.7499 0)
 			(effects
 				(font
@@ -5330,7 +5059,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "R8")
+					(reference "R102")
 					(unit 1)
 				)
 			)
@@ -5346,7 +5075,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "73777560-6340-47d4-8780-3e74b927bad2")
-		(property "Reference" "#PWR051"
+		(property "Reference" "#PWR0111"
 			(at 67.31 35.56 0)
 			(effects
 				(font
@@ -5398,7 +5127,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "#PWR051")
+					(reference "#PWR0111")
 					(unit 1)
 				)
 			)
@@ -5414,7 +5143,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "787df23b-8d42-4eaf-b760-f0f1c81810ed")
-		(property "Reference" "#FLG01"
+		(property "Reference" "#FLG0102"
 			(at 41.91 28.575 0)
 			(effects
 				(font
@@ -5464,7 +5193,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "#FLG01")
+					(reference "#FLG0102")
 					(unit 1)
 				)
 			)
@@ -5480,7 +5209,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7e03ae32-b3b6-4001-a555-c146a3d28b73")
-		(property "Reference" "J2"
+		(property "Reference" "J101"
 			(at 24.13 142.24 0)
 			(effects
 				(font
@@ -5532,7 +5261,7 @@
 		(instances
 			(project ""
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "J2")
+					(reference "J101")
 					(unit 1)
 				)
 			)
@@ -5548,7 +5277,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "84166502-068f-4975-9ba9-7b9603428005")
-		(property "Reference" "H3"
+		(property "Reference" "H101"
 			(at 25.4 173.9899 0)
 			(effects
 				(font
@@ -5599,7 +5328,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "H3")
+					(reference "H101")
 					(unit 1)
 				)
 			)
@@ -5615,7 +5344,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8cfb99bf-c842-41a8-8627-c92e953cccc6")
-		(property "Reference" "H7"
+		(property "Reference" "H104"
 			(at 48.26 173.9899 0)
 			(effects
 				(font
@@ -5666,7 +5395,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "H7")
+					(reference "H104")
 					(unit 1)
 				)
 			)
@@ -5682,7 +5411,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9078c6fe-2641-4126-8c43-11c7b6a106cd")
-		(property "Reference" "C17"
+		(property "Reference" "C102"
 			(at 41.91 147.7009 0)
 			(effects
 				(font
@@ -5736,7 +5465,7 @@
 		(instances
 			(project ""
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "C17")
+					(reference "C102")
 					(unit 1)
 				)
 			)
@@ -5752,7 +5481,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "98e68d40-3cf4-49a5-9c54-dcea634dc362")
-		(property "Reference" "#PWR045"
+		(property "Reference" "#PWR0101"
 			(at 22.86 194.31 0)
 			(effects
 				(font
@@ -5802,7 +5531,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "#PWR045")
+					(reference "#PWR0101")
 					(unit 1)
 				)
 			)
@@ -5818,7 +5547,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a16e282f-e2a8-429d-9121-6b5ff458748f")
-		(property "Reference" "H5"
+		(property "Reference" "H103"
 			(at 40.64 173.9899 0)
 			(effects
 				(font
@@ -5869,7 +5598,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "H5")
+					(reference "H103")
 					(unit 1)
 				)
 			)
@@ -5885,7 +5614,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a310469f-d1db-4e36-8704-e5775a9fb44c")
-		(property "Reference" "H1"
+		(property "Reference" "H102"
 			(at 33.02 173.9899 0)
 			(effects
 				(font
@@ -5936,7 +5665,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "H1")
+					(reference "H102")
 					(unit 1)
 				)
 			)
@@ -5952,7 +5681,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a3c3c500-f484-4ff1-a4ab-1f6fa97ef8f7")
-		(property "Reference" "#PWR025"
+		(property "Reference" "#PWR0119"
 			(at 101.6 186.69 0)
 			(effects
 				(font
@@ -6002,7 +5731,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "#PWR025")
+					(reference "#PWR0119")
 					(unit 1)
 				)
 			)
@@ -6018,7 +5747,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a461309b-51fa-46b1-bb78-c7780d2dd801")
-		(property "Reference" "J5"
+		(property "Reference" "J103"
 			(at 49.53 24.13 0)
 			(effects
 				(font
@@ -6184,75 +5913,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "J5")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 60.96 30.48 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "b49e06e5-a069-4318-8064-0eda6ef541ef")
-		(property "Reference" "#PWR049"
-			(at 57.15 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 64.77 30.4799 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-					(color 255 0 23 1)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 60.96 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 60.96 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 60.96 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "41d8a329-1783-4195-84a8-cb4f60444c88")
-		)
-		(instances
-			(project "flynn_mainboard"
-				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "#PWR049")
+					(reference "J103")
 					(unit 1)
 				)
 			)
@@ -6267,7 +5928,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c14b85e5-5517-4c30-8687-f3a2d41a641c")
-		(property "Reference" "J7"
+		(property "Reference" "J102"
 			(at 49.53 109.2199 0)
 			(effects
 				(font
@@ -6333,7 +5994,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "J7")
+					(reference "J102")
 					(unit 1)
 				)
 			)
@@ -6349,7 +6010,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "cdb53907-7605-4c8c-8acf-54e631f5425a")
-		(property "Reference" "#PWR048"
+		(property "Reference" "#PWR0108"
 			(at 43.18 30.48 0)
 			(effects
 				(font
@@ -6401,7 +6062,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "#PWR048")
+					(reference "#PWR0108")
 					(unit 1)
 				)
 			)
@@ -6417,7 +6078,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d3438630-7c47-4a9c-8f49-872dd86ec6c9")
-		(property "Reference" "#PWR044"
+		(property "Reference" "#PWR0105"
 			(at 41.91 50.8 0)
 			(effects
 				(font
@@ -6469,7 +6130,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "#PWR044")
+					(reference "#PWR0105")
 					(unit 1)
 				)
 			)
@@ -6484,7 +6145,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "d4926f7b-3414-4a08-8d8b-cfee1074c2a8")
-		(property "Reference" "C18"
+		(property "Reference" "C103"
 			(at 52.07 148.5962 0)
 			(effects
 				(font
@@ -6538,7 +6199,7 @@
 		(instances
 			(project ""
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "C18")
+					(reference "C103")
 					(unit 1)
 				)
 			)
@@ -6554,7 +6215,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e308a87e-8648-420b-9546-9ec010572f27")
-		(property "Reference" "#PWR016"
+		(property "Reference" "#PWR0110"
 			(at 49.53 161.29 0)
 			(effects
 				(font
@@ -6604,7 +6265,7 @@
 		(instances
 			(project ""
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "#PWR016")
+					(reference "#PWR0110")
 					(unit 1)
 				)
 			)
@@ -6620,7 +6281,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ee5aa8cf-2ee1-4aaa-8628-cbd4eede8f42")
-		(property "Reference" "#PWR020"
+		(property "Reference" "#PWR0116"
 			(at 90.17 154.94 0)
 			(effects
 				(font
@@ -6670,7 +6331,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "#PWR020")
+					(reference "#PWR0116")
 					(unit 1)
 				)
 			)
@@ -6686,7 +6347,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "efec521d-0aa2-4037-bf84-e259a7bf64c3")
-		(property "Reference" "#PWR055"
+		(property "Reference" "#PWR0115"
 			(at 67.31 71.12 0)
 			(effects
 				(font
@@ -6738,7 +6399,74 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "#PWR055")
+					(reference "#PWR0115")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 49.53 143.51 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f2170cba-bb61-4be7-b240-06b326f93161")
+		(property "Reference" "#FLG0103"
+			(at 47.625 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 45.72 143.5099 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 49.53 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 49.53 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 49.53 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c3e6aa79-cf4f-49e7-8429-83af5676426c")
+		)
+		(instances
+			(project ""
+				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
+					(reference "#FLG0103")
 					(unit 1)
 				)
 			)
@@ -6754,7 +6482,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f291e3a7-ace8-4ce9-a2f7-93eb94cf4e78")
-		(property "Reference" "#PWR043"
+		(property "Reference" "#PWR0104"
 			(at 31.75 40.64 0)
 			(effects
 				(font
@@ -6806,7 +6534,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "#PWR043")
+					(reference "#PWR0104")
 					(unit 1)
 				)
 			)
@@ -6822,7 +6550,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f6438738-e710-4619-ab1c-297cae670cd3")
-		(property "Reference" "D4"
+		(property "Reference" "D101"
 			(at 93.98 171.7674 90)
 			(effects
 				(font
@@ -6876,7 +6604,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f"
-					(reference "D4")
+					(reference "D101")
 					(unit 1)
 				)
 			)

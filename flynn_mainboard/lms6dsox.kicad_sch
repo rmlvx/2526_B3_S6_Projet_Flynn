@@ -1498,7 +1498,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0b74d981-3d1b-458c-9ead-30e452b25c72")
-		(property "Reference" "#PWR037"
+		(property "Reference" "#PWR0304"
 			(at 173.99 88.9 0)
 			(effects
 				(font
@@ -1548,7 +1548,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f/62427f22-d6cc-475c-bb62-0af0fcc02fef"
-					(reference "#PWR037")
+					(reference "#PWR0304")
 					(unit 1)
 				)
 			)
@@ -1565,7 +1565,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "19170bc7-228e-48f1-b7ba-9f93d43415a8")
-		(property "Reference" "#PWR035"
+		(property "Reference" "#PWR0302"
 			(at 119.38 71.12 0)
 			(effects
 				(font
@@ -1615,7 +1615,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f/62427f22-d6cc-475c-bb62-0af0fcc02fef"
-					(reference "#PWR035")
+					(reference "#PWR0302")
 					(unit 1)
 				)
 			)
@@ -1631,7 +1631,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "730162ff-303f-4d65-9f50-fae66a21ef45")
-		(property "Reference" "#PWR038"
+		(property "Reference" "#PWR0305"
 			(at 173.99 109.22 0)
 			(effects
 				(font
@@ -1681,7 +1681,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f/62427f22-d6cc-475c-bb62-0af0fcc02fef"
-					(reference "#PWR038")
+					(reference "#PWR0305")
 					(unit 1)
 				)
 			)
@@ -1698,7 +1698,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7fccdfaa-1cec-4110-924e-07e9c5a0f644")
-		(property "Reference" "#PWR034"
+		(property "Reference" "#PWR0301"
 			(at 109.22 72.39 0)
 			(effects
 				(font
@@ -1748,7 +1748,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f/62427f22-d6cc-475c-bb62-0af0fcc02fef"
-					(reference "#PWR034")
+					(reference "#PWR0301")
 					(unit 1)
 				)
 			)
@@ -1764,7 +1764,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8a52e39b-fe05-48ce-9ee0-ea9063cbd5d8")
-		(property "Reference" "R14"
+		(property "Reference" "R302"
 			(at 121.92 71.1199 0)
 			(effects
 				(font
@@ -1818,7 +1818,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f/62427f22-d6cc-475c-bb62-0af0fcc02fef"
-					(reference "R14")
+					(reference "R302")
 					(unit 1)
 				)
 			)
@@ -1833,7 +1833,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "94da06da-796d-4a4e-95c0-f4b55b4837c4")
-		(property "Reference" "#PWR042"
+		(property "Reference" "#PWR0308"
 			(at 195.58 81.28 0)
 			(effects
 				(font
@@ -1883,7 +1883,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f/62427f22-d6cc-475c-bb62-0af0fcc02fef"
-					(reference "#PWR042")
+					(reference "#PWR0308")
 					(unit 1)
 				)
 			)
@@ -1899,7 +1899,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "af0720fa-dc4a-4ac2-b2c0-4df0d74d318c")
-		(property "Reference" "#PWR041"
+		(property "Reference" "#PWR0307"
 			(at 193.04 88.9 0)
 			(effects
 				(font
@@ -1948,7 +1948,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f/62427f22-d6cc-475c-bb62-0af0fcc02fef"
-					(reference "#PWR041")
+					(reference "#PWR0307")
 					(unit 1)
 				)
 			)
@@ -1964,7 +1964,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b70ea5ab-be76-455c-8191-cb3db54b380f")
-		(property "Reference" "R19"
+		(property "Reference" "R303"
 			(at 129.54 74.9299 0)
 			(effects
 				(font
@@ -2018,7 +2018,7 @@
 		(instances
 			(project ""
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f/62427f22-d6cc-475c-bb62-0af0fcc02fef"
-					(reference "R19")
+					(reference "R303")
 					(unit 1)
 				)
 			)
@@ -2033,7 +2033,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c32abc3b-3c9c-418c-ae1e-6111743d9b30")
-		(property "Reference" "#PWR036"
+		(property "Reference" "#PWR0303"
 			(at 132.08 72.39 0)
 			(effects
 				(font
@@ -2083,7 +2083,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f/62427f22-d6cc-475c-bb62-0af0fcc02fef"
-					(reference "#PWR036")
+					(reference "#PWR0303")
 					(unit 1)
 				)
 			)
@@ -2098,7 +2098,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "cccc8ccc-a409-45c7-978e-87346121b50a")
-		(property "Reference" "R13"
+		(property "Reference" "R301"
 			(at 105.41 74.422 0)
 			(effects
 				(font
@@ -2152,7 +2152,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f/62427f22-d6cc-475c-bb62-0af0fcc02fef"
-					(reference "R13")
+					(reference "R301")
 					(unit 1)
 				)
 			)
@@ -2168,7 +2168,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ce469689-0e66-4ee2-80c3-7d35e831c18a")
-		(property "Reference" "C10"
+		(property "Reference" "C301"
 			(at 182.88 81.9213 0)
 			(effects
 				(font
@@ -2221,7 +2221,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f/62427f22-d6cc-475c-bb62-0af0fcc02fef"
-					(reference "C10")
+					(reference "C301")
 					(unit 1)
 				)
 			)
@@ -2237,7 +2237,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d4bcb435-a31e-446f-8823-cfe17dde07d6")
-		(property "Reference" "#PWR040"
+		(property "Reference" "#PWR0306"
 			(at 180.34 91.44 0)
 			(effects
 				(font
@@ -2286,7 +2286,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f/62427f22-d6cc-475c-bb62-0af0fcc02fef"
-					(reference "#PWR040")
+					(reference "#PWR0306")
 					(unit 1)
 				)
 			)
@@ -2302,7 +2302,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "de0c18b4-72b8-4dc0-9446-80c029aa31bf")
-		(property "Reference" "U4"
+		(property "Reference" "U301"
 			(at 149.86 71.12 0)
 			(effects
 				(font
@@ -2492,7 +2492,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f/62427f22-d6cc-475c-bb62-0af0fcc02fef"
-					(reference "U4")
+					(reference "U301")
 					(unit 1)
 				)
 			)
@@ -2508,7 +2508,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f5a05a45-d4d2-4204-995b-ff0a62506985")
-		(property "Reference" "C11"
+		(property "Reference" "C302"
 			(at 195.58 79.3686 0)
 			(effects
 				(font
@@ -2561,7 +2561,7 @@
 		(instances
 			(project "flynn_mainboard"
 				(path "/56ec65ab-c401-455a-8a7c-6731af93b01f/62427f22-d6cc-475c-bb62-0af0fcc02fef"
-					(reference "C11")
+					(reference "C302")
 					(unit 1)
 				)
 			)
