@@ -48,3 +48,4 @@ A 11h, M. Papazoglou nous a expliqué quelles empreintes il faudrait mettre pour
 - 08:45 : M. PAPAZOGLOU a corrigé lquelques erreurs rencontrées lors de la conception du PCB sur PCB Editor sur Kicad sur l'OS Ubuntu.
 - 08:52 : Correction des erreurs dans le logiciel Kicad sur Ubuntu.
 - 10:02 : Patricia est venue nous aider sur les corrections de la conception du PCB sur les problèmes de routage.
+- 11:30 : On continue à développer le  ``README.md`` et finition su schéma 3D du PCB.
