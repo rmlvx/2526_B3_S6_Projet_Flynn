@@ -3,6 +3,7 @@
 # Folders 
 Driver-LSM6DSOX/*.png
 Driver-LSM6DSOX/
+Hardware-Test/
 
 # Others Files
 test.md

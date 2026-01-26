@@ -49,3 +49,8 @@ A 11h, M. Papazoglou nous a expliqué quelles empreintes il faudrait mettre pour
 - 08:52 : Correction des erreurs dans le logiciel Kicad sur Ubuntu.
 - 10:02 : Patricia est venue nous aider sur les corrections de la conception du PCB sur les problèmes de routage.
 - 11:30 : On continue à développer le  ``README.md`` et finition su schéma 3D du PCB.
+- 12h - 14h : [PAUSE]
+- 13:41 : M. Fiack est venu nous voir pour vérifier le PCB et voir si il y a des erreurs.
+- 15:32 : On refait le diagramme de Gantt de la section "Projects" et mettre les MPN.
+- 16:15 : Génération des fichiers de fabrication en Gerber sur Kicad 9.0.
+- 16:28 : La roadmap a été refaite. 
