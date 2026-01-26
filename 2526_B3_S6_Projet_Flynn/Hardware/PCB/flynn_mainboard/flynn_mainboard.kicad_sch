@@ -2988,6 +2988,16 @@
 		)
 		(uuid "50ca2e50-2ad8-4339-ae92-07f19e39274c")
 	)
+	(text "2 RED LED\n"
+		(exclude_from_sim no)
+		(at 96.012 154.686 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "572fdd5c-2c13-40b5-ad2d-911118744e05")
+	)
 	(text "BATTERY\n"
 		(exclude_from_sim no)
 		(at 20.32 133.604 0)
@@ -2998,6 +3008,16 @@
 		)
 		(uuid "a7836111-2d61-44d7-87c3-f4470695ea0c")
 	)
+	(text "LED"
+		(exclude_from_sim no)
+		(at 75.946 141.732 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "bc9190c7-71b7-4272-b643-84667347428e")
+	)
 	(text "MCP3208 CONNECTOR"
 		(exclude_from_sim no)
 		(at 26.416 94.742 0)
@@ -3007,16 +3027,6 @@
 			)
 		)
 		(uuid "d6a29fa5-dd4e-4e19-ba32-2444f6bbd2f8")
-	)
-	(text "LED\n"
-		(exclude_from_sim no)
-		(at 76.454 142.24 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "dd385c13-4ec9-4598-a9a0-8fac70b7e4a2")
 	)
 	(text_box "Raspberry connector\n\n"
 		(exclude_from_sim no)
