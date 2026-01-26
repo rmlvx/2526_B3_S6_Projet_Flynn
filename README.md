@@ -84,8 +84,8 @@ pip install -r requirements.txt
 <br>
 
 <div align="left">
-  <img src="https://www.ensea.fr/sites/default/files/styles/paragraph_image/public/content/paragraphs/images/2024-06/Logo%20ENSEA%20RVB.png.webp?itok=HkgQVZf7" alt="Logo ENSEA" width="100" />
-  <br><br>
-  <strong>© 2026 - Raphaël MILVAUX, Emire GUIOSE, Merihene REKIK, Zoléni KOKOLO ZASSI.</strong><br>
+  <strong>©️ 2026 - Raphaël MILVAUX, Emire GUIOSE, Merihene REKIK, Zoléni KOKOLO ZASSI.</strong><br>
   <em>Projet réalisé dans le cadre de la formation ENSEA.</em>
+  <br><br>
+  <img src="https://www.ensea.fr/sites/default/files/styles/paragraph_image/public/content/paragraphs/images/2024-06/Logo%20ENSEA%20RVB.png.webp?itok=HkgQVZf7" alt="Logo ENSEA" width="100" />
 </div>
