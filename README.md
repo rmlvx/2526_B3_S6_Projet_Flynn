@@ -1,6 +1,6 @@
-<div align="center">
+# 🤖 Projet_Flynn
 
-  <h1>🤖 Projet Flynn</h1>
+<div align="left">
 
   <p>
     <img src="https://img.shields.io/badge/Status-En_D%C3%A9veloppement-orange" alt="Status" />
