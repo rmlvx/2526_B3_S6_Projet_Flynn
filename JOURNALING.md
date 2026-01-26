@@ -40,3 +40,10 @@ M. Fiack observe nos schémas KICAD pour donner des observations.
 - Capacités de découplage
 
 A 11h, M. Papazoglou nous a expliqué quelles empreintes il faudrait mettre pour chaque résistance, condensateur, etc.
+
+***
+
+## Jour 4 : 2026-01-26
+
+- 08:45 : M. PAPAZOGLOU a corrigé lquelques erreurs rencontrées lors de la conception du PCB sur PCB Editor sur Kicad sur l'OS Ubuntu.
+- 08:52 : Correction des erreurs dans le logiciel Kicad sur Ubuntu.
