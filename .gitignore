@@ -5,3 +5,12 @@ Github_SSH.pub
 
 # VS Code
 .ldg-nfy0
+
+# Folders 
+Driver-LSM6DSOX/*.png
+Driver-LSM6DSOX/
+Hardware-Test/
+
+# Others Files
+.ldg-nfy0
+# [...] 

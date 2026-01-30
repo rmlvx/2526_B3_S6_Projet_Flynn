@@ -1,109 +1,91 @@
-# Projet Gyroscope LSM6DSOX : Driver I2C et Fusion de Capteurs
+# 🤖 Projet_Flynn
 
+<div align="left">
 
-## 🚀 Vue d'Ensemble
+  <p>
+    <img src="https://img.shields.io/badge/Status-En_D%C3%A9veloppement-orange" alt="Status" />
+    <img src="https://img.shields.io/badge/Version-1.0.0-blue" alt="Version" />
+    <img src="https://img.shields.io/badge/Hardware-Raspberry_Pi_Zero_2W-C51A4A?logo=raspberry-pi&logoColor=white" alt="Hardware" />
+    <img src="https://img.shields.io/badge/License-MIT-green" alt="License" />
+    <br>
+    </p>
 
-Ce projet fournit un **driver Python pour le capteur IMU LSM6DSOX** de STMicroelectronics, utilisé via l'interface I2C sur une plateforme comme le Raspberry Pi.
+  <p>
+    <em>Un robot autonome suiveur de ligne avec vision par ordinateur, alliant conception électronique et traitement du signal sur Raspberry Pi.</em>
+  </p>
 
-L'objectif principal est de lire les données brutes d'accélération (en $g$) et de vitesse angulaire (en $dps$), puis d'appliquer un **Filtre Complémentaire** pour calculer une **orientation 3D stable (Roll, Pitch, Yaw)**.
-***
-## 🛠️ Prérequis
-
-Pour exécuter ce projet, vous devez disposer :
-
-1. D'un capteur **LSM6DSOX** câblé correctement.
-2. D'une plateforme avec support I2C (ex : Raspberry Pi).
-3. De la librairie Python `smbus2`.
-
-```Bash
-# S'assurer que le support I2C soit bien activé sur le système (ex: raspi-config)
-sudo apt-get install python3-smbus
-# Installer la librairie Python
-pip install smbus2
-```
-***
-## 📂 Structure du Projet
-
-Le projet est divisé en quatre fichiers principaux pour garantir une architecture propre (Programmation Orientée Objet - POO) :
-
-| **Fichier**                          | **Rôle**                 | **Description**                                                                                                                                                         |
-| ------------------------------------ | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **`main.py`**                        | **Point d'Entrée**       | Initialise l'application (`IMU_Application`) et gère le cycle de vie (`initialize`, `run`, `cleanup`).                                                                  |
-| **`driver/app.py`**                  | **Contrôleur**           | Gère la boucle principale de lecture, l'instanciation du capteur et l'intégration du `ComplementaryFilter`.                                                             |
-| **`driver/settings.py`**             | **Configuration**        | Centralise toutes les constantes matérielles (adresses I2C, registres) et les mappings pour les différentes plages de mesure du capteur.                                |
-| **`driver/lsm6dsox.py`**             | **Driver de Bas Niveau** | Contient la classe `LSM6DSOX_IMU` qui gère la communication I2C, le soft reset, la configuration des registres et la conversion des données brutes en unités physiques. |
-| **`driver/complementary_filter.py`** | **Fusion de Capteurs**   | Contient la classe `ComplementaryFilter` pour combiner les données Accélérateur et Gyroscope.                                                                           |
-
-***
-
-## ⚙️ Fonctionnalités Clés
-
-### 1. Driver Dynamique (`lsm6dsox.py` & `settings.py`)
-
-Le driver I2C a été amélioré pour supporter toutes les plages (Full Scale - FS) du composant :
-
-- **Accéléromètre FS :** $\pm 2g, \pm 4g, \pm 8g, \pm 16g$.
-    
-- **Gyroscope FS :** $\pm 125 dps, \pm 250 dps, \pm 500 dps, \pm 1000 dps, \pm 2000 dps$.
-    
-
-**Utilisation :** La plage est choisie lors de l'instanciation du capteur dans `app.py`.
-
-
-```python
-# Exemple dans app.py pour configurer le capteur en +/- 4g et +/- 1000 dps
-self.sensor = LSM6DSOX_IMU(
-    fs_accel='4g',     
-    fs_gyro='1000dps'  
-)
-```
-
-### 2. Algorithme de Fusion : Filtre Complémentaire (`complementary_filter.py`)
-
-Pour surmonter les limitations des capteurs individuels, l'orientation finale est calculée par fusion de capteurs :
-
-|**Capteur**|**Mesure**|**Inconvénient**|**Rôle dans la Fusion**|
-|---|---|---|---|
-|**Accéléromètre**|Orientation statique|Très sensible aux mouvements (bruit).|**Correction à long terme** (stable).|
-|**Gyroscope**|Vitesse angulaire|Dérive sur le temps (accumulation d'erreur).|**Réactivité à court terme** (rapide).|
-
-Le filtre utilise la constante $\mathbf{ALPHA = 0.98}$ pour pondérer les données. Une valeur proche de `1.0` signifie que le filtre fait principalement confiance au Gyroscope, utilisant l'Accéléromètre uniquement pour corriger la dérive.
-
-#### Formule du Filtre (Roll/Pitch)
-
-$$\text{Angle Fused} = \mathbf{ALPHA} \times (\text{Angle Gyro Prédictif}) + (1 - \mathbf{ALPHA}) \times (\text{Angle Accel Statique})$$
-
-#### Calcul du Yaw (Lacet)
-
-L'angle de Yaw est calculé par simple intégration du taux de rotation sur l'axe Z ($G_z$), car l'Accéléromètre ne peut pas corriger la dérive du Yaw. _Pour une correction sans dérive du Yaw, un Magnétomètre est nécessaire._
-
-***
-
-## ▶️ Exécution du Projet
-
-1. Assurez-vous que l'adresse I2C `LSM6DSOX_ADDR` dans `settings.py` correspond à votre configuration (par défaut : `0x6A`).
-    
-2. Exécutez le script principal :
-    
-
-```bash
-python3 main.py
-```
-
-Le programme affichera les données brutes des deux capteurs, suivies des angles stabilisés (Roll, Pitch, Yaw) calculés par le Filtre Complémentaire.
+</div>
 
 ---
 
-## 📝 Améliorations Futures
+## 📖 À propos
 
-- **Calibration :** Implémenter une routine de calibration pour déterminer les biais (offsets) des gyroscopes.
-    
-- **Magnétomètre :** Intégrer un magnétomètre pour obtenir une orientation absolue et sans dérive sur l'axe du Yaw.
-    
-- **Filtre de Kalman :** Remplacer le Filtre Complémentaire par un Filtre de Kalman pour une fusion plus optimale des incertitudes des capteurs.
-    
-- **ODR Dynamique :** Rendre l'Output Data Rate (ODR) configurable par l'utilisateur (actuellement fixé à $26 Hz$).
+Le **Projet Flynn** a pour objectif de concevoir, prototyper et déployer un robot mobile autonome. Sa mission principale est de suivre des trajectoires (lignes noires ou blanches) sur différents types de surfaces grâce à un système de vision par ordinateur embarqué.
 
+Ce projet s'inscrit dans une démarche d'ingénierie complète, combinant :
+* **Conception PCB** sous Kicad.
+* **Traitement d'image** et du signal pour la navigation.
+* **Pilotage moteur** précis via des drivers silencieux.
 
-© Zoléni KOKOLO ZASSI | Clara CHATELAIS-VAUFLEURY | Damien THEAS CHARLOT
-24 octobre 2025
+<!-- ## 🎥 Démonstration
+
+![Demo](https://via.placeholder.com/800x400?text=Inserer+GIF+ou+Video+du+Robot+Ici) -->
+
+## 🛠️ Architecture Matérielle (BOM)
+
+Le cerveau du robot est une **Raspberry Pi Zero 2W** qui centralise les données des capteurs et assure le pilotage des actionneurs en temps réel.
+
+| Composant | Qté | Fonction | Réf / Doc |
+| :--- | :---: | :---: | :---: |
+| **Raspberry Pi Zero 2W** | 1 | Unité centrale de contrôle & Vision | [Datasheet](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#raspberry-pi-zero-2-w) |
+| **LSM6DSOX** | 1 | IMU (Accéléromètre/Gyro) - Mesure X,Y,Z | [Datasheet](https://www.st.com/resource/en/datasheet/lsm6dsox.pdf) |
+| **TMC2225** | 2 | Driver Moteur (Contrôle précis et silencieux) | [Datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/TMC2225_datasheet_rev1.14.pdf) |
+| **MCP3208** | 1 | ADC 12-bit - Conversion détection couleur | [Datasheet](https://ww1.microchip.com/downloads/en/DeviceDoc/21298E.pdf) |
+
+## 💻 Stack Technique
+
+* **Langage** : ![Python](https://img.shields.io/badge/Python-3.9+-3776AB?logo=python&logoColor=white)
+* **Conception PCB** : ![Kicad](https://img.shields.io/badge/KiCad-9.0-314CB0?logo=kicad&logoColor=white)
+* **VCS** : ![Git](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=white)
+
+## 🚀 Installation et Démarrage
+
+### Prérequis
+
+* Une Raspberry Pi Zero 2W avec **Raspberry Pi OS** configuré.
+* Accès SSH ou terminal activé.
+* Interfaces **SPI** et **I2C** activées via `raspi-config`.
+
+### Installation
+
+Clonez le dépôt sur votre Raspberry Pi et installez les dépendances nécessaires :
+
+```bash
+# Cloner le dépôt
+git clone [https://github.com/votre-user/projet-flynn.git](https://github.com/votre-user/projet-flynn.git)
+
+# Accéder au dossier
+cd projet-flynn
+
+# Installer les dépendances Python
+pip install -r requirements.txt
+```
+
+## 👥 L'Équipe
+
+<div align="center">
+
+| Raphaël MILVAUX | Emire GUIOSE | Merihene REKIK | Zoléni KOKOLO ZASSI |
+| :---: | :---: | :---: | :---: |
+| <a href="https://github.com/rmlvx"><img src="https://wsrv.nl/?url=github.com/rmlvx.png&w=100&h=100&mask=circle" alt="rmlvx"></a> | <a href="https://github.com/emiregse"><img src="https://wsrv.nl/?url=github.com/emiregse.png&w=100&h=100&mask=circle" alt="emiregse"></a> | <a href="https://github.com/skelf24"><img src="https://wsrv.nl/?url=github.com/skelf24.png&w=100&h=100&mask=circle" alt="skelf24"></a> | <a href="https://github.com/Sikoso774"><img src="https://wsrv.nl/?url=github.com/Sikoso774.png&w=100&h=100&mask=circle" alt="Sikoso774"></a> |
+
+</div>
+
+<br>
+
+<div align="left">
+  <strong>©️ 2026 - Raphaël MILVAUX, Emire GUIOSE, Merihene REKIK, Zoléni KOKOLO ZASSI.</strong><br>
+  <em>Projet réalisé dans le cadre de la formation ENSEA.</em>
+  <br><br>
+  <img src="https://www.ensea.fr/sites/default/files/styles/paragraph_image/public/content/paragraphs/images/2024-06/Logo%20ENSEA%20RVB.png.webp?itok=HkgQVZf7" alt="Logo ENSEA" width="100" />
+</div>
