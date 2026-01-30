@@ -59,6 +59,5 @@ A 11h, M. Papazoglou nous a expliqué quelles empreintes il faudrait mettre pour
 ***
 
 ## Jour 5: 2026-01-30
-=======
-- 16:28 : La roadmap a été refaite. 
->>>>>>> 82f93c73fa167a609d15b3950155e04da6b10f33
+
+- 10:31 : On essaie de sauvegarder notre code sur GitHub pour pouvoir continuer nos tests.
