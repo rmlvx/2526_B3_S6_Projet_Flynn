@@ -1,3 +1,5 @@
+# .gitignore
+
 driver/__pycache__
 Github_SSH
 Github_SSH.pub
@@ -13,4 +15,14 @@ Hardware-Test/
 
 # Others Files
 .ldg-nfy0
+=======
+# .gitignore
+
+# Folders 
+Driver-LSM6DSOX/*.png
+Driver-LSM6DSOX/
+Hardware-Test/
+
+# Others Files
+test.md
 # [...] 
