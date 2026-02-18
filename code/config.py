@@ -1,25 +1,39 @@
-# config.py
-import board  # Si utilisation de Blinka, sinon on utilise les numéros BCM directs
+from math import pi
 
-# --- PINOUT (BCM) ---
-# Moteur 1
-MOTOR1_STEP_PIN = 17
-MOTOR1_DIR_PIN = 27
-MOTOR1_EN_PIN = 22
+# --- SYSTÈME ---
+# Sur Raspberry Pi Zero 2W (BCM numbering)
+I2C_BUS_ID = 1
+SPI_BUS_ID = 0
+SPI_DEVICE_ID = 0  # Correspond à la Pin 24 (CE0 / GPIO 8)
 
-# Moteur 2
-MOTOR2_STEP_PIN = 23
-MOTOR2_DIR_PIN = 24
-MOTOR2_EN_PIN = 25
+# --- CAPTEURS ---
+LSM_ADDR = 0x6A    # Adresse I2C par défaut du LSM6DSOX
+ADC_VREF = 3.3     # Tension de référence (3.3V)
 
-# SPI (MCP3208) - Le hardware SPI0 est sur GPIO 10(MOSI), 9(MISO), 11(CLK), 8(CE0)
-ADC_SPI_BUS = 0
-ADC_SPI_DEVICE = 0  # CE0
+# --- MOTEURS (TMC2225) ---
+# Conversion Pin Physique -> GPIO BCM :
+# MOTEUR 1 (Gauche)
+# STEP: Pin 32 -> GPIO 12
+# DIR:  Pin 36 -> GPIO 16
 
-# I2C (LSM6DSOX)
-IMU_I2C_BUS = 1
-IMU_ADDRESS = 0x6A  # Adresse par défaut (ou 0x6B)
+# MOTEUR 2 (Droit)
+# STEP: Pin 33 -> GPIO 13
+# DIR:  Pin 31 -> GPIO 6 (Correction appliquée)
 
-# --- CONSTANTES ---
-VREF_ADC = 3.3  # Tension de référence ADC
-MOTOR_ACCEL_RATE = 0.0005  # Délai en moins par pas pour l'accélération
+MOTOR_LEFT_PINS = {
+    'STEP': 12,
+    'DIR': 16,
+    'EN': None   # Pas connecté sur le schéma (toujours activé hardware)
+}
+
+MOTOR_RIGHT_PINS = {
+    'STEP': 13,
+    'DIR': 6,
+    'EN': None   # Pas connecté sur le schéma
+}
+
+# --- PARAMÈTRES MÉCANIQUES ---
+MICROSTEPS = 16
+STEPS_PER_REV = 200 * MICROSTEPS
+WHEEL_DIAMETER_MM = 65
+MM_PER_STEP = (WHEEL_DIAMETER_MM * pi) / STEPS_PER_REV

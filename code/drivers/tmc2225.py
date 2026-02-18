@@ -1,54 +1,71 @@
-from gpiozero import OutputDevice
 import time
 import threading
+from gpiozero import DigitalOutputDevice
 
 class TMC2225:
-    def __init__(self, step_pin, dir_pin, en_pin, name="Motor"):
+    """
+    Pilote pour TMC2225 utilisant gpiozero.
+    Gère l'accélération, le threading et le cas où la broche Enable est absente.
+    """
+    def __init__(self, STEP, DIR, EN=None, name="Motor"):
         self.name = name
-        self._step = OutputDevice(step_pin)
-        self._dir = OutputDevice(dir_pin)
-        self._en = OutputDevice(en_pin, initial_value=True) # Active Low: True = Disable au démarrage
+        self.step_pin = DigitalOutputDevice(STEP)
+        self.dir_pin = DigitalOutputDevice(DIR)
+        
+        # Gestion optionnelle de la broche Enable
+        self.enable_pin = None
+        if EN is not None:
+            # active_high=False car souvent LOW=Enabled sur les drivers
+            self.enable_pin = DigitalOutputDevice(EN, active_high=False, initial_value=False)
+        
         self._running = False
         self._thread = None
 
-    def enable(self):
-        self._en.off() # Active Low
+    def enable(self, state=True):
+        """Active ou désactive le courant (si la broche EN est connectée)"""
+        if self.enable_pin:
+            if state:
+                self.enable_pin.on()
+            else:
+                self.enable_pin.off()
 
-    def disable(self):
-        self._en.on()
-
-    def set_direction(self, clockwise=True):
-        if clockwise:
-            self._dir.on()
-        else:
-            self._dir.off()
-
-    def move_steps(self, steps, delay=0.001, accel=False):
+    def move_async(self, steps, speed_hz, acceleration=True):
         """
-        Déplace le moteur de n pas. Bloquant si appelé directement, 
-        mais prévu pour être encapsulé si besoin.
+        Lance un mouvement dans un thread (non-bloquant).
         """
-        self.enable()
-        current_delay = delay * 3 if accel else delay # Départ lent si accélération
+        if self._running:
+            return # Ignore si déjà en mouvement
+
+        direction = 1 if steps > 0 else 0
+        self.dir_pin.value = direction
+        
+        self._thread = threading.Thread(
+            target=self._step_loop, 
+            args=(abs(steps), speed_hz, acceleration)
+        )
+        self._thread.start()
+
+    def _step_loop(self, steps, target_speed, acceleration):
+        """Boucle de génération des impulsions."""
+        self._running = True
+        self.enable(True)
+        
+        delay = 1.0 / target_speed
         
         for i in range(steps):
-            self._step.on()
-            time.sleep(1e-6) # Pulse très court (min 100ns pour TMC2225)
-            self._step.off()
+            if not self._running: break
             
-            # Gestion simple de l'accélération (Ramp-up)
-            if accel and current_delay > delay:
-                current_delay -= (delay * 0.05) # Réduit le délai de 5% par pas
-            
-            time.sleep(current_delay)
-            
-        self.disable()
+            # Pulse
+            self.step_pin.on()
+            time.sleep(delay * 0.5)
+            self.step_pin.off()
+            time.sleep(delay * 0.5)
 
-    def move_async(self, steps, delay=0.001):
-        """Lance le mouvement dans un thread séparé"""
+        self._running = False
+        # On ne désactive pas le moteur ici pour garder le couple (Hold Torque)
+
+    def stop(self):
+        """Arrêt d'urgence"""
+        self._running = False
         if self._thread and self._thread.is_alive():
-            print(f"[{self.name}] Moteur déjà en mouvement.")
-            return
-        
-        self._thread = threading.Thread(target=self.move_steps, args=(steps, delay, True))
-        self._thread.start()
+            self._thread.join()
