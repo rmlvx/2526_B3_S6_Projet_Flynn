@@ -61,3 +61,7 @@ A 11h, M. Papazoglou nous a expliqué quelles empreintes il faudrait mettre pour
 ## Jour 5: 2026-01-30
 
 - 10:31 : On essaie de sauvegarder notre code sur GitHub pour pouvoir continuer nos tests.
+
+## Jour 6: 2026-02-17
+
+- Emire et Merihene sont partis souder des composants, 
