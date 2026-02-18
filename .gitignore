@@ -22,6 +22,7 @@ Hardware-Test/
 Driver-LSM6DSOX/*.png
 Driver-LSM6DSOX/
 Hardware-Test/
+others/
 
 # Others Files
 test.md
