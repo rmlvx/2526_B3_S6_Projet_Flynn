@@ -53,7 +53,6 @@ A 11h, M. Papazoglou nous a expliqué quelles empreintes il faudrait mettre pour
 - 13:41 : M. Fiack est venu nous voir pour vérifier le PCB et voir si il y a des erreurs.
 - 15:32 : On refait le diagramme de Gantt de la section "Projects" et mettre les MPN.
 - 16:15 : Génération des fichiers de fabrication en Gerber sur Kicad 9.0.
-<<<<<<< HEAD
 - 16:28 : La roadmap a été refaite. 
 
 ***
@@ -64,4 +63,9 @@ A 11h, M. Papazoglou nous a expliqué quelles empreintes il faudrait mettre pour
 
 ## Jour 6: 2026-02-17
 
-- Emire et Merihene sont partis souder des composants, 
+- Emire et Merihene sont partis souder des composants, Raphaël a aidé à la conception 3D du chassis du robot. Zoléni a repris le code déjà fait sur GitHub pour le reporter à nouveau.
+
+## Jour 7: 2026-02-18
+
+- 08:53 : Emire, Merihene et Raphaël concoivent une pièce 3D sur Onshape pour que le cateur TMC2225 suive le mouvement du robot FLYNN.
+- 08:57 : Je suis en train de vérifier que le code fonctionne sur la Raspberry PI et que tous les codes fonctionnent bien.
