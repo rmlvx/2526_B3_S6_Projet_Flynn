@@ -72,4 +72,10 @@ A 11h, M. Papazoglou nous a expliqué quelles empreintes il faudrait mettre pour
 
 ToDo :
 - [ ] Concevoir la pièce 
-- [ ] Adapter le code par rapport au PCB.
+- [x] Adapter le code par rapport au PCB
+
+Modification et impression des pièces de test. 
+
+## Jour 8: 2026-02-19
+
+- Validation du code Python sur l'accéléromètre et cela fonctionne toujours aussi bien. C'est validé !
