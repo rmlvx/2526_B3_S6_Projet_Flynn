@@ -70,6 +70,6 @@ A 11h, M. Papazoglou nous a expliqué quelles empreintes il faudrait mettre pour
 - 08:53 : Emire, Merihene et Raphaël concoivent une pièce 3D sur Onshape pour que le cateur TMC2225 suive le mouvement du robot FLYNN.
 - 08:57 : Je suis en train de vérifier que le code fonctionne sur la Raspberry PI et que tous les codes fonctionnent bien.
 
-ToDo : 
+ToDo :
 - [ ] Concevoir la pièce 
-- [ ] Adapter le code par rapport au PCB
+- [ ] Adapter le code par rapport au PCB.
