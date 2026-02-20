@@ -19,9 +19,8 @@ Hardware-Test/
 # .gitignore
 
 # Folders 
-Driver-LSM6DSOX/*.png
-Driver-LSM6DSOX/
-Hardware-Test/
+code/__pycache__/*.pyc
+code/.venv
 
 # Others Files
 test.md
