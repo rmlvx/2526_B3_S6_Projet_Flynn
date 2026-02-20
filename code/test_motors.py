@@ -18,31 +18,32 @@ def test_motors():
         pas_par_tour = cfg.STEPS_PER_REV # Normalement 3200 (200 * 16 microsteps)
         pas_total = tours * pas_par_tour
 
-        # 2. Test Moteur Gauche
-        print(f"\n-> Moteur GAUCHE : {tours} tour(s) en avant à {vitesse}Hz...")
-        motor_l.move_async(steps=pas_total, speed_hz=vitesse)
-        time.sleep((pas_total / vitesse) + 1) # Attendre la fin du mouvement
+        while True:
+            # # 2. Test Moteur Gauche
+            # print(f"\n-> Moteur GAUCHE : {tours} tour(s) en avant à {vitesse}Hz...")
+            # motor_l.move_async(steps=pas_total, speed_hz=vitesse)
+            # time.sleep((pas_total / vitesse) + 1) # Attendre la fin du mouvement
 
-        print("-> Moteur GAUCHE : Retour...")
-        motor_l.move_async(steps=-pas_total, speed_hz=vitesse)
-        time.sleep((pas_total / vitesse) + 1)
+            # print("-> Moteur GAUCHE : Retour...")
+            # motor_l.move_async(steps=-pas_total, speed_hz=vitesse)
+            # time.sleep((pas_total / vitesse) + 1)
 
-        # 3. Test Moteur Droit
-        print(f"\n-> Moteur DROIT : {tours} tour(s) en avant à {vitesse}Hz...")
-        motor_r.move_async(steps=pas_total, speed_hz=vitesse)
-        time.sleep((pas_total / vitesse) + 1)
+            # # 3. Test Moteur Droit
+            # print(f"\n-> Moteur DROIT : {tours} tour(s) en avant à {vitesse}Hz...")
+            # motor_r.move_async(steps=pas_total, speed_hz=vitesse)
+            # time.sleep((pas_total / vitesse) + 1)
 
-        print("-> Moteur DROIT : Retour...")
-        motor_r.move_async(steps=-pas_total, speed_hz=vitesse)
-        time.sleep((pas_total / vitesse) + 1)
+            # print("-> Moteur DROIT : Retour...")
+            # motor_r.move_async(steps=-pas_total, speed_hz=vitesse)
+            # time.sleep((pas_total / vitesse) + 1)
 
-        # 4. Test Simultané
-        print("\n-> Les DEUX moteurs en même temps...")
-        motor_l.move_async(steps=pas_total, speed_hz=vitesse)
-        motor_r.move_async(steps=-pas_total, speed_hz=vitesse) # Sens inverse (pour avancer le robot)
-        time.sleep((pas_total / vitesse) + 1)
+            # 4. Test Simultané
+            print("\n-> Les DEUX moteurs en même temps...")
+            motor_l.move_async(steps=pas_total, speed_hz=vitesse)
+            motor_r.move_async(steps=-pas_total, speed_hz=vitesse) # Sens inverse (pour avancer le robot)
+            time.sleep((pas_total / vitesse) + 1)
 
-        print("\n[SUCCÈS] Test terminé proprement.")
+            print("\n[SUCCÈS] Test terminé proprement.")
 
     except KeyboardInterrupt:
         print("\n[ARRÊT] Interruption par l'utilisateur.")
