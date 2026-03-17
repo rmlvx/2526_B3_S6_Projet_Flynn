@@ -8,6 +8,7 @@ try:
     from drivers.lsm6dsox import LSM6DSOX
     from drivers.mcp3208 import MCP3208
     from drivers.tmc2225 import TMC2225
+    from line_dectector import LineDetector
 except ImportError as e:
     print(f"CRITIQUE : Pilote manquant ({e})")
     exit(1)
@@ -39,7 +40,9 @@ class MachineController:
         # ADC
         try:
             self.adc = MCP3208(bus=cfg.SPI_BUS_ID, device=cfg.SPI_DEVICE_ID, vref=cfg.ADC_VREF)
+            self.detector = LineDetector(adc_instance=self.adc, threshold=1.5)
             print("[OK] ADC MCP3208")
+            print("Line detector OK")
         except: print("[INFO] Pas d'ADC")
 
         # Moteurs
@@ -67,9 +70,15 @@ class MachineController:
         print("\n--- Démarrage Robot (Ctrl+C pour stopper) ---")
         
         # Test Moteurs (Rotation lente)
-        if self.motor_l and self.motor_r:
-            self.motor_l.move_async(5000, 400)
-            self.motor_r.move_async(-5000, 400)
+        # if self.motor_l and self.motor_r:
+        #     self.motor_l.move_async(5000, 400)
+        #     self.motor_r.move_async(-5000, 400)
+            
+            # Démarrage des threads des moteurs
+        # if self.motor_l: self.motor_l.start()
+        # if self.motor_r: self.motor_r.start()
+        
+        print("--- Démarrage Robot (Ctrl+C pour stopper) ---")
 
         err_count = 0
 
@@ -111,26 +120,54 @@ class MachineController:
                             err_count = 0
 
                 # 2. Lecture ADC
-                if self.adc:
-                    try: _, volts = self.adc.read(0)
-                    except: pass
+                    if self.adc:
+                        # On demande au capteur où est la ligne
+                        tensions_str, position = self.detector.read_status()
+
+                        # # Affichage dynamique sur la console
+                        # print(f"{tensions_str} --> {position}      ", end='\r')
+                except: pass
 
                 # --- B. Logique de Sécurité (Failsafe) ---
                 if not valid_imu:
+                    pass
                     # Si on ne sait pas où on est, on coupe les moteurs !
-                    if self.motor_l: self.motor_l.stop()
-                    if self.motor_r: self.motor_r.stop()
-                    mot_state = "STOP (SECURITE)"
+                    # if self.motor_l: self.motor_l.stop()
+                    # if self.motor_r: self.motor_r.stop()
+                    # mot_state = "STOP (SECURITE)"
                 else:
-                    # Ici viendra votre code d'asservissement (PID)
-                    # Pour l'instant, on laisse tourner
-                    mot_state = "RUN"
+                    # --- NOUVEAU CERVEAU : SUIVI DE LIGNE ---
+                    
+                    # 1. On demande à l'ADC où est la ligne
+                    tensions_str, position = self.detector.read_status() 
+                    # Note : si vous avez appelé votre fonction process() dans line_detector.py, utilisez .process()
+                    
+                    # 2. Logique de décision
+                    if position == "No line detected" or "Aucune ligne" in position:
+                        # Le robot est perdu (sur du blanc) : On s'arrête net !
+                        if self.motor_l: self.motor_l.stop()
+                        if self.motor_r: self.motor_r.stop()
+                        mot_state = "STOP (BLANC)"
+                        
+                    else:
+                        # Le robot voit la ligne noire (gauche, droite ou centre) : En avant !
+                        # Vitesse de 800 Hz (à ajuster selon la force voulue)
+                        if self.motor_l: self.motor_l.move_async(5000, 400)
+                        if self.motor_r: self.motor_r.move_async(-5000, 400) # Négatif car monté en miroir
+                        mot_state = f"RUN ({position})"
+
+                # --- Feedback Console ---
+                print(f"ADC: {tensions_str} | {mot_state}      ", end='\r')
 
                 # --- C. Feedback (Console + Log) ---
                 # Affichage formaté pour lecture facile
-                print(f"IMU: {mag:.2f}g [X:{ax:.1f} Y:{ay:.1f} Z:{az:.1f}] | ADC: {volts:.1f}V | {status} | {mot_state}      ", end='\r')
+                # print(f"IMU: {mag:.2f}g [X:{ax:.1f} Y:{ay:.1f} Z:{az:.1f}] | ADC: {volts:.1f}V | {status} | {mot_state}      ", end='\r')
+                # Dans machine.py, là où tu fais la lecture
+                valeur_brute = self.adc.read_raw(0)
+                tension = self.adc.read_voltage(0)
+                print(f"DEBUG ADC - Brut: {valeur_brute} | Tension: {tension}") # Ajoute ça temporairement
                 
-                self.logger.log(ax, ay, az, mag, volts, status)
+                # self.logger.log(ax, ay, az, mag, volts, status)
                 
                 time.sleep(0.05) # Boucle à 20Hz
 
