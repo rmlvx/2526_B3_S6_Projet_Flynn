@@ -53,7 +53,7 @@ A 11h, M. Papazoglou nous a expliqué quelles empreintes il faudrait mettre pour
 - 13:41 : M. Fiack est venu nous voir pour vérifier le PCB et voir si il y a des erreurs.
 - 15:32 : On refait le diagramme de Gantt de la section "Projects" et mettre les MPN.
 - 16:15 : Génération des fichiers de fabrication en Gerber sur Kicad 9.0.
-- 16:28 : La roadmap a été refaite. 
+- 16:28 : La roadmap a été refaite.
 
 ***
 
@@ -71,11 +71,21 @@ A 11h, M. Papazoglou nous a expliqué quelles empreintes il faudrait mettre pour
 - 08:57 : Je suis en train de vérifier que le code fonctionne sur la Raspberry PI et que tous les codes fonctionnent bien.
 
 ToDo :
-- [ ] Concevoir la pièce 
+
+- [x] Concevoir la pièce.
 - [x] Adapter le code par rapport au PCB
 
-Modification et impression des pièces de test. 
+Modification et impression des pièces de test.
 
 ## Jour 8: 2026-02-19
 
 - Validation du code Python sur l'accéléromètre et cela fonctionne toujours aussi bien. C'est validé !
+
+## Jour 9: 2026-02-20
+
+- Réparation de l'antenne WIFI.
+- Test des moteurs : Cela ne fonctionne pas encore.
+
+## Jour 10 : 2026-03-17
+
+- Tentative d'assemblage du code ADC d'origine avec le code. Si le robot détecte selon lui du NOIR, il avance, sinon il s'arrête.
