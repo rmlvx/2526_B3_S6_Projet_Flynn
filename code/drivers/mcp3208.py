@@ -1,7 +1,7 @@
 import spidev
 
 class MCP3208:
-    def __init__(self, bus=0, device=0, vref=3.3):
+    def __init__(self, bus=0, device=0, vref=5):
         self.spi = spidev.SpiDev()
         self.spi.open(bus, device)
         self.spi.max_speed_hz = 1000000 # 1 MHz
@@ -23,6 +23,10 @@ class MCP3208:
     def read_voltage(self, channel):
         raw = self.read_raw(channel)
         return (raw / 4095.0) * self.vref
+    
+    def read_canal(self, channel):
+        raw = self.read_raw(channel)
+        return raw
 
     def close(self):
         self.spi.close()

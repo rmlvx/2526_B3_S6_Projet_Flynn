@@ -74,7 +74,7 @@ class MachineController:
         #     self.motor_l.move_async(5000, 400)
         #     self.motor_r.move_async(-5000, 400)
             
-            # Démarrage des threads des moteurs
+        #     Démarrage des threads des moteurs
         # if self.motor_l: self.motor_l.start()
         # if self.motor_r: self.motor_r.start()
         
@@ -153,7 +153,7 @@ class MachineController:
                         # Le robot voit la ligne noire (gauche, droite ou centre) : En avant !
                         # Vitesse de 800 Hz (à ajuster selon la force voulue)
                         if self.motor_l: self.motor_l.move_async(5000, 400)
-                        if self.motor_r: self.motor_r.move_async(-5000, 400) # Négatif car monté en miroir
+                        if self.motor_r: self.motor_r.move_async(5000, 400) # Négatif car monté en miroir
                         mot_state = f"RUN ({position})"
 
                 # --- Feedback Console ---
@@ -161,13 +161,15 @@ class MachineController:
 
                 # --- C. Feedback (Console + Log) ---
                 # Affichage formaté pour lecture facile
-                # print(f"IMU: {mag:.2f}g [X:{ax:.1f} Y:{ay:.1f} Z:{az:.1f}] | ADC: {volts:.1f}V | {status} | {mot_state}      ", end='\r')
+                volts = self.adc.read_voltage(0)
+                canal = self.adc.read_canal(0)
+                print(f"IMU: {mag:.2f}g [X:{ax:.1f} Y:{ay:.1f} Z:{az:.1f}] | ADC: {canal}/4095 ; {volts:.1f}V | {status} | {mot_state}      ", end='\r')
+                
                 # Dans machine.py, là où tu fais la lecture
                 valeur_brute = self.adc.read_raw(0)
-                tension = self.adc.read_voltage(0)
-                print(f"DEBUG ADC - Brut: {valeur_brute} | Tension: {tension}") # Ajoute ça temporairement
+                # print(f"DEBUG ADC - Brut: {valeur_brute} | Tension: {tension}") # Ajoute ça temporairement
                 
-                # self.logger.log(ax, ay, az, mag, volts, status)
+                self.logger.log(ax, ay, az, mag, volts, status)
                 
                 time.sleep(0.05) # Boucle à 20Hz
 
