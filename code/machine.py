@@ -142,44 +142,39 @@ class MachineController:
                     mot_state = "STOP (SECURITE IMU)"
                 
                 # ---------------------------------------------------------
-                # --- NOUVEAU CERVEAU : LECTURE DIRECTE ADC & STRATÉGIES ---
+                # --- NOUVEAU CERVEAU : STRATÉGIE "1 CAPTEUR SUR 8" ---
                 # ---------------------------------------------------------
                 if self.adc:
-                    # 1. Lecture de tous les capteurs en compréhension de liste
+                    # 1. Lecture des 8 capteurs
                     valeurs_brutes = [self.adc.read_raw(i) for i in range(8)]
                     
-                    # 2. Exclusion des capteurs défectueux (2 et 6)
-                    # On garde les indices : 0, 1, 3, 4, 5, 7
-                    valeurs_valides = [valeurs_brutes[i] for i in range(8) if i not in [2, 6]]
-                    
-                    # 3. Stratégie 1 : LIGNE LARGE (Moyenne des capteurs valides)
-                    moyenne_large = sum(valeurs_valides) / len(valeurs_valides)
-                    
-                    # Stratégie 2 : LIGNE PETITE (Moyenne des 3 capteurs du milieu valides: 3, 4, 5)
-                    valeurs_milieu = [valeurs_brutes[i] for i in [3, 4, 5]]
-                    moyenne_petite = sum(valeurs_milieu) / len(valeurs_milieu)
-                    
-                    # 4. Choix du seuil et de la valeur à analyser
                     THRESHOLD = 2007
                     
-                    # !!! ICI VOUS CHOISISSEZ LA STRATÉGIE !!!
-                    # Remplacez "moyenne_large" par "moyenne_petite" selon la piste testée
-                    valeur_analysee = moyenne_large 
+                    # On écoute les 8 capteurs :
+                    # capteurs_actifs = range(8) 
                     
-                    # 5. Logique de décision de mouvement
-                    if valeur_analysee > THRESHOLD:
-                        # Il détecte du NOIR -> Il roule
+                    # (Si le robot refuse de s'arrêter à cause des capteurs HS qui lisent 4000, 
+                    # commentez la ligne du dessus et décommentez celle du dessous :)
+                    capteurs_actifs = [0, 1, 3, 4, 5, 7]
+                    
+                    # 2. La condition magique : "any" vérifie si au moins UN capteur dépasse 2007
+                    voit_le_noir = any(valeurs_brutes[i] > THRESHOLD for i in capteurs_actifs)
+                    
+                    # 3. Action !
+                    if voit_le_noir:
+                        # Au moins 1 capteur voit la ligne -> On avance !
                         if self.motor_l: self.motor_l.move_async(5000, 400)
                         if self.motor_r: self.motor_r.move_async(-5000, 400) # En miroir
                         mot_state = "RUN  (NOIR) "
                     else:
-                        # Il détecte du BLANC -> Il s'arrête
+                        # Strictement AUCUN capteur ne voit la ligne -> On s'arrête
                         if self.motor_l: self.motor_l.stop()
                         if self.motor_r: self.motor_r.stop()
                         mot_state = "STOP (BLANC)"
 
-                    # Affichage clair dans le terminal pour déboguer
-                    print(f"Moyenne lue: {valeur_analysee:4.0f}/4095 | Seuil: {THRESHOLD} -> {mot_state}      ", end='\r')
+                    # Affichage dynamique pour voir les valeurs en direct
+                    affichage_vals = " ".join([f"CH{i}:{valeurs_brutes[i]:4d}" for i in capteurs_actifs])
+                    print(f"Yeux [{affichage_vals}] | {mot_state}      ", end='\r')
 
                 # ---------------------------------------------------------
 
