@@ -1,0 +1,38 @@
+elif self.adc:
+                    # --- 1. LECTURE DES 8 CAPTEURS ---
+                    valeurs_brutes = [self.adc.read_canal(i) for i in range(8)]
+                    
+                    # --- 2. TROUVER LA VALEUR LA PLUS HAUTE ---
+                    valeur_max = max(valeurs_brutes)
+                    # valeur_min = min(valeurs_brutes)
+                    
+                    # --- 3. DÉCISION STRICTE : 2007 ---
+                    if valeur_max > THRESHOLD:
+                        # Au-delà de 2007 : Il roule
+                        if self.motor_l: self.motor_l.move_async(5000, 400)
+                        if self.motor_r: self.motor_r.move_async(-5000, 400) 
+                        mot_state = "ROULE (LIGNE)"
+                    else:
+                        # Entre 0 et 2007 : Il s'arrête
+                        if self.motor_l: self.motor_l.stop()
+                        if self.motor_r: self.motor_r.stop()
+                        mot_state = "STOP (BLANC)"
+
+                    # --- C. Feedback (Console + Log) ---
+                    # On met à jour l'affichage pour voir les 8 valeurs d'un coup
+                    valeurs_str = f"[{','.join(f'{v:4}' for v in valeurs_brutes)}]"
+                    print(f"IMU: {mag:.2f}g | ADC: {valeurs_str} | {status} | {mot_state}      ", end='\r')
+
+                    # # --- C. Feedback (Console + Log) ---
+                    # # Pour éviter de faire planter votre logger qui attend une valeur 'volts', 
+                    # # on calcule la tension du capteur central (ex: CH3) ou du premier
+                    volts_ch0 = (valeurs_brutes[0] / 4095.0) * cfg.ADC_VREF if self.adc else 0.0
+                    
+                    # Formatage compact des 8 valeurs pour ne pas inonder l'écran
+                    valeurs_str = f"[{','.join(f'{v:4}' for v in valeurs_brutes)}]"
+                    
+                    print(f"IMU: {mag:.2f}g | ADC: {valeurs_str} | {status} | {mot_state}      ", end='\r')
+                    
+                    self.logger.log(ax, ay, az, mag, volts_ch0, status)
+                    
+                    time.sleep(0.05) # Boucle à 20Hz

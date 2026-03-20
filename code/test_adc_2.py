@@ -3,7 +3,7 @@ import time
 
 # === Configuration ===
 THRESHOLD = 2007  # Au-delà de 3500 c'est NOIR, sinon c'est BLANC
-DELAY = 0.5       # J'ai augmenté un peu le délai pour que l'affichage soit lisible
+DELAY = 0.10       # J'ai augmenté un peu le délai pour que l'affichage soit lisible
 
 def main():
     adc = MCP3208(vref=3.3)
@@ -27,8 +27,8 @@ def main():
             
             # 4. Affichage des résultats
             print(f"Brutes : {valeurs_brutes}")
-            print(f"États  : {etats_capteurs}")
-            print("-" * 50) # Ligne de séparation pour la lisibilité
+            # print(f"États  : {etats_capteurs}")
+            # print("-" * 50) # Ligne de séparation pour la lisibilité
 
             time.sleep(DELAY)
 
