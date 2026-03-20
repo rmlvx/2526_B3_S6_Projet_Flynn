@@ -11,7 +11,6 @@ try:
     from drivers.lsm6dsox import LSM6DSOX
     from drivers.mcp3208 import MCP3208
     from drivers.tmc2225 import TMC2225
-    # from line_dectector import LineDetector
 except ImportError as e:
     print(f"CRITIQUE : Pilote manquant ({e})")
     exit(1)
@@ -141,9 +140,6 @@ class MachineController:
                     if self.motor_r: self.motor_r.stop()
                     mot_state = "STOP (SECURITE IMU)"
                 
-                # ---------------------------------------------------------
-                # --- NOUVEAU CERVEAU : STRATÉGIE "1 CAPTEUR SUR 8" ---
-                # ---------------------------------------------------------
                 if self.adc:
                     # 1. Lecture des 8 capteurs
                     valeurs_brutes = [self.adc.read_raw(i) for i in range(8)]
