@@ -159,7 +159,7 @@ class MachineController:
                     # 3. Action !
                     if voit_le_noir:
                         # Au moins 1 capteur voit la ligne -> On avance !
-                        if self.motor_l: self.motor_l.move_async(-5000, 400)
+                        if self.motor_l: self.motor_l.move_async(5000, 400)
                         if self.motor_r: self.motor_r.move_async(5000, 400) # En miroir
                         mot_state = "RUN  (NOIR) "
                     else:

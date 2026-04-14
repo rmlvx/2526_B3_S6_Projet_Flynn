@@ -19,7 +19,7 @@ def test_balance():
         
         # On ajoute le "Kd" (Le frein anticipatif)
         # (Suite du code existant avant la boucle...)
-        pid = PIDController(kp=0.8, ki=0.0, kd=5.0, target_angle=0.0)
+        pid = PIDController(kp=15, ki=0, kd=0, target_angle=0.0)
         
         # Initialisation du Filtre de Kalman
         from Kalman import KalmanFilter1D 
@@ -74,7 +74,7 @@ def test_balance():
             time.sleep(0.01) # Maintien de la boucle à environ 100 Hz
             
     except KeyboardInterrupt:
-        print("[ARRET]")
+        print("\n[ARRET]")
 
 
 if __name__=="__main__":
