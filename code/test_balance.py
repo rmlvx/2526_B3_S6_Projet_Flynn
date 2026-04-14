@@ -4,6 +4,7 @@ import config as cfg
 from drivers.lsm6dsox import LSM6DSOX
 from drivers.tmc2225 import TMC2225
 from PID import PIDController
+from Kalman import KalmanFilter1D
 
 def test_balance():
     print("--- TEST D'ÉQUILIBRE (FILTRE COMPLÉMENTAIRE & PID) ---")
@@ -13,17 +14,21 @@ def test_balance():
         motor_l = TMC2225(**cfg.MOTOR_LEFT_PINS, name="Gauche")
         motor_r = TMC2225(**cfg.MOTOR_RIGHT_PINS, name="Droit")
         
-        motor_l.start()
-        motor_r.start()
+        motor_l.enable()
+        motor_r.enable()
         
         # On ajoute le "Kd" (Le frein anticipatif)
+        # (Suite du code existant avant la boucle...)
         pid = PIDController(kp=0.8, ki=0.0, kd=5.0, target_angle=0.0)
         
-        print("[OK] Système prêt. Le robot utilise désormais son oreille interne (Gyro) !")
+        # Initialisation du Filtre de Kalman
+        from Kalman import KalmanFilter1D 
+        kalman = KalmanFilter1D()
         
-        # Variables pour le Filtre Complémentaire
-        theta = 0.0
-        alpha = 0.8
+        print("[OK] Système prêt. Le robot utilise tes fonctions TMC2225 réelles !")
+        
+        # ATTENTION : On supprime les motor_l.start() qui n'existent pas dans ton driver.
+        
         prev_time = time.time()
         
         while True:
@@ -37,31 +42,40 @@ def test_balance():
             dt = current_time - prev_time
             prev_time = current_time
             
-            # 1. Calcul de l'angle "Bruité" via l'accéléromètre (Votre formule magique)
+            if dt <= 0.0 or dt > 0.1:
+                dt = 0.01 
+            
+            # 1. Calcul de l'angle via Kalman
             accel_angle = math.degrees(math.atan2(az, -ay))
+            theta = kalman.get_angle(accel_angle, gx, dt)
             
-            # 2. Le Filtre Complémentaire
-            # L'axe de rotation des roues correspond à l'axe X de la carte (donc 'gx')
-            # (Si l'angle part à l'envers quand vous le penchez, remplacez + gx par - gx)
-            theta = alpha*theta + (1 - alpha) * (0.8 * (theta + gx * dt) + 0.2 * accel_angle)
-            
-            # 3. Calcul de la vitesse par le PID
+            # 2. Calcul de la commande (vitesse en Hz) par le PID
             commande = pid.compute(theta)
             
-            # 4. Envoi de la commande
-            motor_l.set_speed(commande)
-            motor_r.set_speed(commande) # En miroir
+            # 3. Conversion de la vitesse en nombre de pas pour ce cycle de 10ms
+            # La commande est en pas/seconde. On multiplie par dt (secondes) pour avoir le nombre de pas immédiat
+            steps_to_move = int(commande * dt)
+            speed = abs(commande)
             
-            # Affichage console pour comparer la magie du filtre
-            print(f"Angle Filtré: {theta:6.1f}° | Accel pur: {accel_angle:6.1f}° | Gyro: {gx:6.1f}, {gy:6.1f}, {gy:6.1f} | Cmd: {commande:8.0f} Hz   ", end='\r')
+            # 4. Envoi de la commande avec tes fonctions
+            # On doit impérativement stopper le thread précédent pour que move_async accepte le nouveau
+            motor_l.stop()
+            motor_r.stop()
             
-            time.sleep(0.01) # On passe à 100 Hz pour que le Gyro soit ultra précis
-
+            # On lance le thread pour les prochains 10ms (avec acceleration=False pour être réactif)
+            if abs(steps_to_move) > 0 and speed > 5.0:
+                motor_l.move_async(steps_to_move, speed, acceleration=False)
+                # Remarque : si un moteur est monté en face de l'autre, ajoute un signe "-" devant steps_to_move
+                motor_r.move_async(-steps_to_move, speed, acceleration=False) 
+            
+            # Affichage console
+            print(f"Angle Kalman: {theta:6.1f}° | Cmd: {commande:8.0f} Hz | Pas/cycle: {steps_to_move:3d}   ", end='\r')
+            
+            time.sleep(0.01) # Maintien de la boucle à environ 100 Hz
+            
     except KeyboardInterrupt:
-        print("\n\n[ARRÊT] Moteurs coupés.")
-    finally:
-        if 'motor_l' in locals(): motor_l.stop()
-        if 'motor_r' in locals(): motor_r.stop()
+        print("[ARRET]")
 
-if __name__ == "__main__":
+
+if __name__=="__main__":
     test_balance()

@@ -39,7 +39,7 @@ def test_motors():
 
             # 4. Test Simultané
             print("\n-> Les DEUX moteurs en même temps...")
-            motor_l.move_async(steps=pas_total, speed_hz=vitesse)
+            motor_l.set_speed(steps=pas_total, speed_hz=vitesse)
             motor_r.move_async(steps=-pas_total, speed_hz=vitesse) # Sens inverse (pour avancer le robot)
             time.sleep((pas_total / vitesse) + 1)
 
