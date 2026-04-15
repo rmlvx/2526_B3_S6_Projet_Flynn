@@ -3,12 +3,14 @@ import math
 import config as cfg
 from logger import DataLogger
 
+THRESHOLD = 2007  # Ligne > 2007 = Ligne Noire,
+                  # <= 2007 = Blanc
+                  
 # Importation robuste des drivers
 try:
     from drivers.lsm6dsox import LSM6DSOX
     from drivers.mcp3208 import MCP3208
     from drivers.tmc2225 import TMC2225
-    from line_dectector import LineDetector
 except ImportError as e:
     print(f"CRITIQUE : Pilote manquant ({e})")
     exit(1)
@@ -74,7 +76,7 @@ class MachineController:
         #     self.motor_l.move_async(5000, 400)
         #     self.motor_r.move_async(-5000, 400)
             
-            # Démarrage des threads des moteurs
+        #     Démarrage des threads des moteurs
         # if self.motor_l: self.motor_l.start()
         # if self.motor_r: self.motor_r.start()
         
@@ -128,48 +130,50 @@ class MachineController:
                         # print(f"{tensions_str} --> {position}      ", end='\r')
                 except: pass
 
-                # --- B. Logique de Sécurité (Failsafe) ---
+                # --- B. Logique de Sécurité et Suivi de ligne ---
+                # --- B. Logique de Sécurité et Suivi de ligne ---
+                mot_state = "INIT"
+                valeurs_brutes = [0] * 8 # Liste vide par défaut pour les 8 capteurs
+
                 if not valid_imu:
-                    pass
-                    # Si on ne sait pas où on est, on coupe les moteurs !
-                    # if self.motor_l: self.motor_l.stop()
-                    # if self.motor_r: self.motor_r.stop()
-                    # mot_state = "STOP (SECURITE)"
-                else:
-                    # --- NOUVEAU CERVEAU : SUIVI DE LIGNE ---
+                    if self.motor_l: self.motor_l.stop()
+                    if self.motor_r: self.motor_r.stop()
+                    mot_state = "STOP (SECURITE IMU)"
+                
+                if self.adc:
+                    # 1. Lecture des 8 capteurs
+                    valeurs_brutes = [self.adc.read_raw(i) for i in range(8)]
                     
-                    # 1. On demande à l'ADC où est la ligne
-                    tensions_str, position = self.detector.read_status() 
-                    # Note : si vous avez appelé votre fonction process() dans line_detector.py, utilisez .process()
+                    THRESHOLD = 2007
                     
-                    # 2. Logique de décision
-                    if position == "No line detected" or "Aucune ligne" in position:
-                        # Le robot est perdu (sur du blanc) : On s'arrête net !
+                    # On écoute les 8 capteurs :
+                    # capteurs_actifs = range(8) 
+                    
+                    # (Si le robot refuse de s'arrêter à cause des capteurs HS qui lisent 4000, 
+                    # commentez la ligne du dessus et décommentez celle du dessous :)
+                    capteurs_actifs = [0, 1, 3, 4, 5, 7]
+                    
+                    # 2. La condition magique : "any" vérifie si au moins UN capteur dépasse 2007
+                    voit_le_noir = any(valeurs_brutes[i] > THRESHOLD for i in capteurs_actifs)
+                    
+                    # 3. Action !
+                    if voit_le_noir:
+                        # Au moins 1 capteur voit la ligne -> On avance !
+                        if self.motor_l: self.motor_l.move_async(5000, 400)
+                        if self.motor_r: self.motor_r.move_async(5000, 400) # En miroir
+                        mot_state = "RUN  (NOIR) "
+                    else:
+                        # Strictement AUCUN capteur ne voit la ligne -> On s'arrête
                         if self.motor_l: self.motor_l.stop()
                         if self.motor_r: self.motor_r.stop()
                         mot_state = "STOP (BLANC)"
-                        
-                    else:
-                        # Le robot voit la ligne noire (gauche, droite ou centre) : En avant !
-                        # Vitesse de 800 Hz (à ajuster selon la force voulue)
-                        if self.motor_l: self.motor_l.move_async(5000, 400)
-                        if self.motor_r: self.motor_r.move_async(-5000, 400) # Négatif car monté en miroir
-                        mot_state = f"RUN ({position})"
 
-                # --- Feedback Console ---
-                print(f"ADC: {tensions_str} | {mot_state}      ", end='\r')
+                    # Affichage dynamique pour voir les valeurs en direct
+                    affichage_vals = " ".join([f"CH{i}:{valeurs_brutes[i]:4d}" for i in capteurs_actifs])
+                    print(f"Yeux [{affichage_vals}] | {mot_state}      ", end='\r')
 
-                # --- C. Feedback (Console + Log) ---
-                # Affichage formaté pour lecture facile
-                # print(f"IMU: {mag:.2f}g [X:{ax:.1f} Y:{ay:.1f} Z:{az:.1f}] | ADC: {volts:.1f}V | {status} | {mot_state}      ", end='\r')
-                # Dans machine.py, là où tu fais la lecture
-                valeur_brute = self.adc.read_raw(0)
-                tension = self.adc.read_voltage(0)
-                print(f"DEBUG ADC - Brut: {valeur_brute} | Tension: {tension}") # Ajoute ça temporairement
-                
-                # self.logger.log(ax, ay, az, mag, volts, status)
-                
-                time.sleep(0.05) # Boucle à 20Hz
+                # ---------------------------------------------------------
+
 
         except KeyboardInterrupt:
             print("\n[USER] Arrêt demandé.")

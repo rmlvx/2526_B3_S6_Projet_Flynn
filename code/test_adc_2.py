@@ -1,39 +1,44 @@
-from MCP3208 import MCP3208        # Import the MCP3208 ADC class
-from line_detector import detect_line  # Import the line detection function
-import time                         # Used for timing delays
+from drivers.mcp3208 import MCP3208
+import time
 
-# === Configuration constants ===
-THRESHOLD = 1.5  # Voltage threshold for line detection (adjust according to your sensor setup)
-DELAY = 0.05     # Delay (in seconds) between two sensor readings
+# === Configuration ===
+THRESHOLD = 2007  # Au-delà de 3500 c'est NOIR, sinon c'est BLANC
+DELAY = 0.10       # J'ai augmenté un peu le délai pour que l'affichage soit lisible
 
 def main():
-    """
-    Main program:
-    - Initializes the MCP3208 ADC
-    - Continuously reads sensor values
-    - Detects the line position using the detectionline module
-    - Stops cleanly when the user presses Ctrl+C
-    """
-    IFR = MCP3208(vref=3.3)  # Create an ADC object with a 3.3V reference voltage
+    adc = MCP3208(vref=3.3)
 
     try:
-        print("Starting line following (Press Ctrl+C to stop)...")
+        print("Test des capteurs : Détection NOIR / BLANC (Ctrl+C pour arrêter)...")
 
-        # Main loop: read sensors continuously
         while True:
-            position = detect_line(IFR, threshold=THRESHOLD)  # Detect the line position
-            time.sleep(DELAY)  # Wait a short time before the next reading
+            # 1. On lit les valeurs brutes des 8 capteurs (de 0 à 7)
+            valeurs_brutes = [adc.read_canal(i) for i in range(8)]
+            
+            # 2. On crée une liste vide pour stocker l'état (NOIR ou BLANC)
+            etats_capteurs = []
+            
+            # 3. On analyse chaque valeur brute
+            for val in valeurs_brutes:
+                if val > THRESHOLD:
+                    etats_capteurs.append("NOIR ") # L'espace ajoute un peu d'alignement
+                else:
+                    etats_capteurs.append("BLANC")
+            
+            # 4. Affichage des résultats
+            print(f"Brutes : {valeurs_brutes}")
+            # print(f"États  : {etats_capteurs}")
+            # print("-" * 50) # Ligne de séparation pour la lisibilité
+
+            time.sleep(DELAY)
 
     except KeyboardInterrupt:
-        # Handles manual interruption (Ctrl+C)
-        IFR.close()  # Close the SPI connection safely
-        print("\nProgram stopped.")
+        adc.close()
+        print("\nProgramme arrêté proprement.")
 
     except Exception as e:
-        # Handles any other unexpected errors
-        IFR.close()
-        print(f"Error detected: {e}")
+        adc.close()
+        print(f"Erreur détectée: {e}")
 
-# Entry point: only runs when this file is executed directly
 if __name__ == "__main__":
     main()
