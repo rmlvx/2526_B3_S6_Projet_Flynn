@@ -90,4 +90,6 @@ Modification et impression des pièces de test.
 
 - Tentative d'assemblage du code ADC d'origine avec le code. Si le robot détecte selon lui du NOIR, il avance, sinon il s'arrête.
 
-## Jour 11
+## Jour 11: 2026-04-15
+
+- Faire le Canva
