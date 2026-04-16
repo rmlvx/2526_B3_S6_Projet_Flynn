@@ -16,8 +16,8 @@ def test_motor_signs():
     motor_r.enable()
 
     tests = [
-        ("Moteur GAUCHE — vitesse POSITIVE (+300 Hz)", motor_l, +300),
-        ("Moteur GAUCHE — vitesse NEGATIVE (-300 Hz)", motor_l, -300),
+        # ("Moteur GAUCHE — vitesse POSITIVE (+300 Hz)", motor_l, +300),
+        # ("Moteur GAUCHE — vitesse NEGATIVE (-300 Hz)", motor_l, -300),
         ("Moteur DROIT  — vitesse POSITIVE (+300 Hz)", motor_r, +300),
         ("Moteur DROIT  — vitesse NEGATIVE (-300 Hz)", motor_r, -300),
     ]
@@ -27,7 +27,7 @@ def test_motor_signs():
         print("       Appuyez sur Entrée pour démarrer...")
         input()
         motor.set_speed(speed)
-        time.sleep(2.0)
+        time.sleep(10)
         motor.set_speed(0)
         print("       Moteur arrêté.\n")
 
@@ -36,4 +36,8 @@ def test_motor_signs():
     print("=== FIN DU DIAGNOSTIC ===")
 
 if __name__ == "__main__":
-    test_motor_signs()
+    try:
+        while True :
+            test_motor_signs()
+    except KeyboardInterrupt:
+        print("CTRL + C")
