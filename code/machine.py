@@ -170,9 +170,6 @@ class MachineController:
                     affichage_vals = " ".join([f"CH{i}:{valeurs_brutes[i]:4d}" for i in capteurs_actifs])
                     print(f"Yeux [{affichage_vals}] | {mot_state}      ", end='\r')
 
-                # ---------------------------------------------------------
-
-
         except KeyboardInterrupt:
             print("\n[USER] Arrêt demandé.")
         finally:
