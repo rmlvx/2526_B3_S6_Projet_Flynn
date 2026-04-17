@@ -70,12 +70,12 @@ class MachineController:
         """Entry point of the main loop"""
         print("\n--- Démarrage Robot (Ctrl+C pour stopper) ---")
         
-        # Test Moteurs (Rotation lente)
+        # Engine Test (Slow Rotation)
         # if self.motor_l and self.motor_r:
         #     self.motor_l.move_async(5000, 400)
         #     self.motor_r.move_async(-5000, 400)
             
-        #     Démarrage des threads des moteurs
+        # Starting the engine threads
         # if self.motor_l: self.motor_l.start()
         # if self.motor_r: self.motor_r.start()
         

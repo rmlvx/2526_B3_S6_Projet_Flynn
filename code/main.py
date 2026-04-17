@@ -1,6 +1,6 @@
 from machine import MachineController
 
 if __name__ == "__main__":
-    # Création et lancement du robot
+    # Design and launch of the robot
     machine = MachineController()
     machine.start()

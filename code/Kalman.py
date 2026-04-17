@@ -18,7 +18,7 @@ class KalmanFilter1D:
         self.P10 = 0.0
         self.P11 = 0.0
 
-    def get_angle(self, new_angle, new_rate, dt):
+    def get_angle(self, new_angle, new_rate, dt) -> float:
         # 1. Prediction phase (Dynamic update via the gyroscope)
         rate = new_rate - self.bias
         self.angle += dt * rate
