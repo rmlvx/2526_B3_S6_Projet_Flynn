@@ -1,14 +1,14 @@
 from math import pi
 
 # --- SYSTEM ---
-# Sur Raspberry Pi Zero 2W (BCM numbering)
+# On Raspberry Pi Zero 2W (BCM numbering)
 I2C_BUS_ID = 1
 SPI_BUS_ID = 0
-SPI_DEVICE_ID = 0  # Correspond à la Pin 24 (CE0 / GPIO 8)
+SPI_DEVICE_ID = 0  # Corresponds to Pin 24 (CE0 / GPIO 8)
 
 # --- CAPTEURS ---
-LSM_ADDR = 0x6A    # Adresse I2C par défaut du LSM6DSOX
-ADC_VREF = 3.3     # Tension de référence (3.3V)
+LSM_ADDR = 0x6A    # Default I2C address for the LSM6DSOX
+ADC_VREF = 3.3     # Reference voltage (3.3V)
 
 # --- MOTORS (TMC2225) ---
 # Physical Pin to BCM GPIO Conversion:
