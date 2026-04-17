@@ -7,25 +7,25 @@ class DataLogger:
         self.file = None
         self.filename = ""
         
-        # Création du dossier si inexistant
+        # Create the folder if it does not exist
         if not os.path.exists(folder):
             os.makedirs(folder)
             
-        # Nom du fichier avec timestamp
+        # File name with timestamp
         timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
         self.filename = f"{folder}/session_{timestamp}.csv"
         
         try:
             self.file = open(self.filename, mode='w', newline='')
             self.writer = csv.writer(self.file)
-            # En-têtes standards
+            # Standard headers
             self.writer.writerow(["Timestamp", "Ax", "Ay", "Az", "Magnitude", "ADC", "Statut"])
             print(f"[LOG] Fichier créé : {self.filename}")
         except Exception as e:
             print(f"[LOG] Erreur création fichier : {e}")
 
     def log(self, ax, ay, az, magnitude, adc_volts, status_msg):
-        """Enregistre une ligne de données"""
+        """Saves a row of data"""
         if self.file:
             t = datetime.now().strftime("%H:%M:%S.%f")[:-3]
             try:
@@ -35,7 +35,7 @@ class DataLogger:
                     f"{magnitude:.3f}", f"{adc_volts:.2f}", 
                     status_msg
                 ])
-                self.file.flush() # Force l'écriture disque
+                self.file.flush() # Force disk write
             except Exception:
                 pass
 

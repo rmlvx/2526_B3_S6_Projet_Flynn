@@ -1,9 +1,9 @@
 class KalmanFilter1D:
     def __init__(self, q_angle=0.001, q_bias=0.003, r_measure=0.03):
         """
-        Q_angle: Bruit de processus de l'angle (confiance dans le modèle gyro)
-        Q_bias: Bruit de processus du biais du gyro
-        R_measure: Bruit de mesure de l'accéléromètre (augmenter si trop de vibrations moteurs)
+        Q_angle: Process noise of the angle (confidence in the gyro model)
+        Q_bias: Process noise of the gyro bias
+        R_measure: Measurement noise of the accelerometer (increase if there is too much engine vibration)
         """
         self.Q_angle = q_angle
         self.Q_bias = q_bias
@@ -19,29 +19,29 @@ class KalmanFilter1D:
         self.P11 = 0.0
 
     def get_angle(self, new_angle, new_rate, dt):
-        # 1. Étape de prédiction (Update dynamique via le gyroscope)
+        # 1. Prediction phase (Dynamic update via the gyroscope)
         rate = new_rate - self.bias
         self.angle += dt * rate
 
-        # Mise à jour de la matrice de covariance d'erreur
+        # Updating the error covariance matrix
         self.P00 += dt * (dt * self.P11 - self.P01 - self.P10 + self.Q_angle)
         self.P01 -= dt * self.P11
         self.P10 -= dt * self.P11
         self.P11 += self.Q_bias * dt
 
-        # 2. Étape de mise à jour (Correction via l'accéléromètre)
-        y = new_angle - self.angle # Erreur entre la mesure et l'estimation
-        S = self.P00 + self.R_measure # Estimation de l'erreur
+        # 2. Update phase (Correction using the accelerometer)
+        y = new_angle - self.angle    # Discrepancy between the measurement and the estimate
+        S = self.P00 + self.R_measure # Error estimation
 
-        # Gain de Kalman
+        # Kalman gain
         K0 = self.P00 / S
         K1 = self.P10 / S
 
-        # Correction de l'angle et du biais
+        # Angle and Skew Correction
         self.angle += K0 * y
         self.bias += K1 * y
 
-        # Mise à jour de la matrice de covariance
+        # Updating the covariance matrix
         P00_temp = self.P00
         P01_temp = self.P01
 

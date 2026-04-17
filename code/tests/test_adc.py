@@ -2,8 +2,8 @@ from drivers.mcp3208 import MCP3208
 import time
 
 # === Configuration ===
-THRESHOLD = 2007  # Au-delà de 3500 c'est NOIR, sinon c'est BLANC
-DELAY = 0.10       # J'ai augmenté un peu le délai pour que l'affichage soit lisible
+THRESHOLD = 2007   # Above 3500 it's BLACK; otherwise it's WHITE
+DELAY = 0.10       # Delay slightly to make the display easier to read
 
 def main():
     adc = MCP3208(vref=3.3)
@@ -12,20 +12,20 @@ def main():
         print("Test des capteurs : Détection NOIR / BLANC (Ctrl+C pour arrêter)...")
 
         while True:
-            # 1. On lit les valeurs brutes des 8 capteurs (de 0 à 7)
+            # 1. Read the raw values from the 8 sensors (0 through 7)
             valeurs_brutes = [adc.read_canal(i) for i in range(8)]
             
-            # 2. On crée une liste vide pour stocker l'état (NOIR ou BLANC)
+            # 2. Create an empty list to store the state (BLACK or WHITE)
             etats_capteurs = []
             
-            # 3. On analyse chaque valeur brute
+            # 3. Analyze each raw value
             for val in valeurs_brutes:
                 if val > THRESHOLD:
-                    etats_capteurs.append("NOIR ") # L'espace ajoute un peu d'alignement
+                    etats_capteurs.append("NOIR ") # A space adds a bit of alignment
                 else:
                     etats_capteurs.append("BLANC")
             
-            # 4. Affichage des résultats
+            # 4. Displaying results
             print(f"Brutes : {valeurs_brutes}")
             # print(f"États  : {etats_capteurs}")
             # print("-" * 50) # Ligne de séparation pour la lisibilité
