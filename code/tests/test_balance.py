@@ -6,11 +6,11 @@ from drivers.tmc2225 import TMC2225
 from PID import PIDController
 from Kalman import KalmanFilter1D
 
-# Vitesse maximale envoyée aux moteurs (Hz).
-# Augmenter si le robot ne réagit pas assez vite, diminuer si les moteurs calent.
+# Maximum speed sent to the motors (Hz).
+# Increase this value if the robot isn't responding quickly enough; decrease it if the motors stall.
 MAX_SPEED_HZ = 800.0
 
-# Angle au-delà duquel on considère le robot comme tombé (sécurité)
+# Angle beyond which the robot is considered to have fallen (safety)
 FALL_ANGLE = 45.0
 
 
@@ -33,28 +33,28 @@ def test_balance():
         prev_time = time.perf_counter()
 
         while True:
-            # ── 1. Lecture IMU ──────────────────────────────────────────────
+            # ── 1. IMU reading ──────────────────────────────────────────────
             data = imu.read_all()
             ax, ay, az = data['accel']
             gx, gy, gz = data['gyro']
 
-            # ── 2. Calcul du dt ─────────────────────────────────────────────
+            # ── 2. Calculation of dt ─────────────────────────────────────────────
             now = time.perf_counter()
             dt  = now - prev_time
             prev_time = now
 
-            # Garde-fou : si dt est aberrant, on saute ce cycle
+            # Safety check: if dt is invalid, skip this loop
             if dt <= 0.0 or dt > 0.5:
                 time.sleep(0.01)
                 continue
 
-            # ── 3. Angle Kalman ─────────────────────────────────────────────
-            # atan2(az, -ay) donne l'angle d'inclinaison avant/arrière
-            # gx doit être l'axe angulaire correspondant (en °/s)
+            # ── 3. Kalman Angle ─────────────────────────────────────────────
+            # atan2(az, -ay) returns the forward/reverse pitch angle;
+            # gx must be the corresponding angular velocity (in °/s)
             accel_angle = math.degrees(math.atan2(az, -ay))
             theta = kalman.get_angle(accel_angle, gx, dt)
 
-            # ── 4. Sécurité anti-chute ──────────────────────────────────────
+            # ── 4. Fall Protection ──────────────────────────────────────
             if abs(theta) > FALL_ANGLE:
                 motor_l.set_speed(0)
                 motor_r.set_speed(0)
@@ -65,17 +65,17 @@ def test_balance():
                 continue
 
             # ── 5. PID ─────────────────────────────────────────────────────
-            # On passe dt au PID pour qu'il utilise le même dt que Kalman
+            # Switch the PID controller to use the same time constant as the Kalman filter
             commande = pid.compute(theta, dt)
 
-            # ── 6. Saturation de la vitesse ─────────────────────────────────
+            # ── 6. Speed saturation ─────────────────────────────────
             commande = max(-MAX_SPEED_HZ, min(commande, MAX_SPEED_HZ))
 
-            # ── 7. Envoi direct de la vitesse signée (set_speed est thread-safe)
+            # ── 7. Directly pass the signed speed (set_speed is thread-safe)
             motor_l.set_speed( commande)
             motor_r.set_speed(-commande)   # moteur droit monté en miroir
 
-            # ── 8. Affichage ────────────────────────────────────────────────
+            # ── 8. Display ────────────────────────────────────────────────
             print(
                 f"dt:{dt*1000:5.1f}ms | "
                 f"Angle:{theta:6.2f}° | "

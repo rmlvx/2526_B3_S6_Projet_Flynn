@@ -1,6 +1,6 @@
 # test_motor_signs.py
-# Exécuter ce script AVANT tout test d'équilibrage.
-# Il valide que chaque moteur tourne dans le bon sens selon le signe de la vitesse.
+# Run this script BEFORE performing any load balancing tests.
+# It verifies that each motor is rotating in the correct direction based on the speed sign.
 
 import time
 import config as cfg

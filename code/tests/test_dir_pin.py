@@ -2,7 +2,7 @@
 import time
 from gpiozero import DigitalOutputDevice
 
-dir_pin = DigitalOutputDevice(16)  # GPIO 16 = DIR moteur gauche
+dir_pin = DigitalOutputDevice(16)  # GPIO 16 = DIR left motor
 
 print("DIR = HIGH (3.3V attendu sur la broche)")
 dir_pin.value = 1
