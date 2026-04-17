@@ -22,7 +22,6 @@ Hardware-Test/
 code/__pycache__/*.pyc
 code/.venv
 
-micode/
 website/
 others/
 # Others Files
