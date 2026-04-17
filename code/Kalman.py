@@ -9,10 +9,10 @@ class KalmanFilter1D:
         self.Q_bias = q_bias
         self.R_measure = r_measure
 
-        self.angle = 0.0 # Angle estimé
-        self.bias = 0.0  # Biais estimé du gyroscope
+        self.angle = 0.0 # Estimated angle
+        self.bias = 0.0  # Estimated gyroscope bias
 
-        # Matrice de covariance d'erreur P (2x2)
+        # Error covariance matrix P (2x2)
         self.P00 = 0.0
         self.P01 = 0.0
         self.P10 = 0.0
